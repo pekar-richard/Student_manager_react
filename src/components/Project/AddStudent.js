@@ -206,26 +206,6 @@ class AddStudent extends Component {
                     )}
                   </div>
 
-                  <div className="form-group">
-                    <input
-                      type="number"
-                      min="0"
-                      step="0.1"
-                      className={classnames("form-control form-control-lg ", {
-                        "is-invalid": errors.student_kredit,
-                      })}
-                      placeholder="Student Kredit"
-                      name="student_kredit"
-                      value={this.state.student_kredit}
-                      onChange={this.onChange}
-                    />
-                    {errors.student_kredit && (
-                      <div className="invalid-feedback">
-                        {errors.student_kredit}
-                      </div>
-                    )}
-                  </div>
-
                   <h6>Geburst Datum</h6>
                   <div className="form-group">
                     <input
