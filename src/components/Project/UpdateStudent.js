@@ -302,10 +302,10 @@ class UpdateStudent extends Component {
                       value={this.state.student_abrechnung}
                       onChange={this.onChange}
                     >
-                      <option value={""}>Select Abrechnung</option>
-                      <option value={0}>Bar</option>
-                      <option value={1}>Kredit</option>
-                      <option value={2}>Rehnung</option>
+                      <option value={0}>Select Abrechnung</option>
+                      <option value={1}>Bar</option>
+                      <option value={2}>Kredit</option>
+                      <option value={3}>Rehnung</option>
                     </select>
                   </div>
 
@@ -316,9 +316,9 @@ class UpdateStudent extends Component {
                       value={this.state.student_aktiv}
                       onChange={this.onChange}
                     >
-                      <option value="">Select Status</option>
-                      <option value={0}>nicht aktiv</option>
-                      <option value={1}>aktiv</option>
+                      <option value={0}>Select Status</option>
+                      <option value={1}>nicht aktiv</option>
+                      <option value={2}>aktiv</option>
                     </select>
                   </div>
                   <div className="form-group">
