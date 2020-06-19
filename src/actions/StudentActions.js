@@ -20,7 +20,7 @@ export const createStudent = (student, history) => async (dispatch) => {
 export const updateStudent = (student, id, history) => async (dispatch) => {
   try {
     const res = await axios.put(`/api/student/${id}`, student);
-    history.push(`/studentBoard/${id}`);
+    history.push("/dashboard");
     dispatch({
       type: GET_ERRORS,
       payload: {},

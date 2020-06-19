@@ -20,6 +20,7 @@ class StudentItem extends Component {
             <div className="col-lg-6 col-md-4 col-8">
               <h3>{student.student_nachname}</h3>
               <p>{student.student_vorname}</p>
+              <p>{student.student_kredit} euro</p>
             </div>
             <div className="col-md-4 d-none d-lg-block">
               <ul className="list-group">

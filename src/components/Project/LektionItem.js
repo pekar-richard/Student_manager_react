@@ -3,11 +3,19 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteLektion } from "../../actions/LektionActions";
+import { formatDateTime } from "../../tools";
 
 class LektionItem extends Component {
+  constructor() {
+    super();
+
+    this.state = {};
+  }
+
   onDeleteClick = (id) => {
     this.props.deleteLektion(id);
   };
+
   render() {
     const { lektion } = this.props;
     return (
@@ -18,8 +26,9 @@ class LektionItem extends Component {
               <span className="mx-auto">{lektion.lektion_index}</span>
             </div>
             <div className="col-lg-6 col-md-4 col-8">
-              <h3>{lektion.lektion_datum}</h3>
+              <h3>{formatDateTime(lektion.lektion_datum)}</h3>
               <p>{lektion.lektion_min} min.</p>
+              <p>{lektion.lektion_preis} euro</p>
             </div>
             <div className="col-md-4 d-none d-lg-block">
               <ul className="list-group">

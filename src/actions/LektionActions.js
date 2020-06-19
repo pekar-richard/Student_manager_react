@@ -1,11 +1,13 @@
 import axios from "axios";
 import { GET_ERRORS, GET_LEKTION, GET_LEKTIONS, DELETE_LEKTION } from "./types";
 
-export const createLektion = (lektion, history) => async (dispatch) => {
+export const createLektion = (lektion, student_index, history) => async (
+  dispatch
+) => {
   try {
     await axios.post("/api/lektion/", lektion);
-    history.push("/dashboard");
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+    history.push(`/StudentLektionDashboard/${student_index}`);
+
     dispatch({
       type: GET_ERRORS,
       payload: {},
@@ -21,7 +23,7 @@ export const createLektion = (lektion, history) => async (dispatch) => {
 export const updateLektion = (lektion, id, history) => async (dispatch) => {
   try {
     const res = await axios.put(`/api/lektion/${id}`, lektion);
-    history.push(`/studentBoard/${id}`);
+    history.push("/dashboard");
     dispatch({
       type: GET_ERRORS,
       payload: {},
@@ -36,7 +38,7 @@ export const updateLektion = (lektion, id, history) => async (dispatch) => {
 
 export const getLektions = () => async (dispatch) => {
   const res = await axios.get("/api/lektion/alllektions");
-  console.log("aaaaaaaaaaaaaa", res);
+
   dispatch({
     type: GET_LEKTIONS,
     payload: res.data,

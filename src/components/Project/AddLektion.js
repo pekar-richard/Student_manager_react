@@ -4,22 +4,24 @@ import { connect } from "react-redux";
 import classnames from "classnames";
 import { createLektion } from "../../actions/LektionActions";
 import { getStudent } from "../../actions/StudentActions";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { registerLocale, setDefaultLocale } from "react-datepicker";
-import es from "date-fns/locale/es";
-
-registerLocale("es", es);
+import { formatDateTimeLocal, formatDateLocal } from "../../tools";
 
 class AddLektion extends Component {
   constructor() {
     super();
 
     this.state = {
-      lektion_datum: new Date(),
+      //Student daten
+      student_kredit: "",
+      student_preis45: "",
+      student_preis60: "",
+      student_preis90: "",
+      student_preis120: "",
+      //Lektion daten
+      lektion_datum: formatDateTimeLocal(new Date()),
       lektion_min: "",
-      lektion_preis: "",
+      lektion_preis: 0,
       lektion_art: "",
       lektion_status: "",
       lektion_abrechnung: "",
@@ -34,20 +36,13 @@ class AddLektion extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(date) {
-    this.setState({
-      lektion_datum: date,
-    });
   }
 
   onSubmit(e) {
     e.preventDefault();
 
     const newLektion = {
-      lektion_datum: this.state.lektion_datum,
+      lektion_datum: new Date(this.state.lektion_datum).toISOString(),
       lektion_min: this.state.lektion_min,
       lektion_preis: this.state.lektion_preis,
       lektion_art: this.state.lektion_art,
@@ -61,7 +56,11 @@ class AddLektion extends Component {
       agentur_index: this.state.agentur_index,
     };
 
-    this.props.createLektion(newLektion, this.props.history);
+    this.props.createLektion(
+      newLektion,
+      this.state.student_index,
+      this.props.history
+    );
   }
 
   //life cycle hooks
@@ -71,21 +70,39 @@ class AddLektion extends Component {
     }
 
     const {
+      //Student daten
+      student_preis45,
+      student_preis60,
+      student_preis90,
+      student_preis120,
       student_abrechnung,
       student_index,
       agentur_index,
     } = nextProps.student.student;
 
+    const {
+      //Zahlungs daten
+      zahlungsByStudentID,
+    } = nextProps.zahlung;
+
     this.setState({
       lektion_abrechnung: student_abrechnung,
       student_index,
       agentur_index,
+      student_preis45,
+      student_preis60,
+      student_preis90,
+      student_preis120,
+      zahlungsByStudentID,
     });
+
+    this.lektionBezaltDatum(student_abrechnung);
   }
 
   componentDidMount() {
     const { student_index } = this.props.match.params;
     this.props.getStudent(student_index, this.props.history);
+
     this.setState({
       student_index,
     });
@@ -93,7 +110,55 @@ class AddLektion extends Component {
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+
+    if (e.target.name === "lektion_min") {
+      this.lektionPrice(e.target.value);
+    }
+
+    if (e.target.name === "lektion_abrechnung") {
+      this.lektionBezaltDatum(e.target.value);
+    }
   }
+
+  lektionPrice = (lektion_min) => {
+    if (lektion_min === "0") {
+      this.setState({ lektion_preis: this.state.student_preis45 });
+    }
+
+    if (lektion_min === "45") {
+      this.setState({ lektion_preis: this.state.student_preis45 });
+    }
+
+    if (lektion_min === "60") {
+      this.setState({ lektion_preis: this.state.student_preis60 });
+    }
+
+    if (lektion_min === "90") {
+      this.setState({ lektion_preis: this.state.student_preis90 });
+    }
+
+    if (lektion_min === "120") {
+      this.setState({ lektion_preis: this.state.student_preis120 });
+    }
+  };
+
+  lektionBezaltDatum = (lektion_abrechnung) => {
+    if (lektion_abrechnung === 0 || lektion_abrechnung === "0") {
+      this.setState({ lektion_bezahlt: "" });
+    }
+
+    if (lektion_abrechnung === 1 || lektion_abrechnung === "1") {
+      this.setState({ lektion_bezahlt: formatDateLocal(new Date()) });
+    }
+
+    if (lektion_abrechnung === 2 || lektion_abrechnung === "2") {
+      this.setState({ lektion_bezahlt: "" });
+    }
+
+    if (lektion_abrechnung === 3 || lektion_abrechnung === "3") {
+      this.setState({ lektion_bezahlt: "" });
+    }
+  };
 
   render() {
     const { errors } = this.state;
@@ -111,14 +176,12 @@ class AddLektion extends Component {
                 <form onSubmit={this.onSubmit}>
                   <h6>Lektion Datum</h6>
                   <div className="form-group">
-                    <DatePicker
-                      selected={this.state.lektion_datum}
-                      onChange={this.handleChange}
-                      showTimeSelect
-                      timeFormat="HH:mm"
-                      timeIntervals={20}
-                      timeCaption="time"
-                      dateFormat="yyyy-MM-dd HH:mm:ss"
+                    <input
+                      type="datetime-local"
+                      className="form-control form-control-lg"
+                      name="lektion_datum"
+                      value={this.state.lektion_datum}
+                      onChange={this.onChange}
                     />
                   </div>
 
@@ -251,8 +314,10 @@ AddLektion.propTypes = {
 const mapStateToProps = (state) => ({
   errors: state.errors,
   student: state.student,
+  zahlung: state.zahlung,
 });
 
-export default connect(mapStateToProps, { createLektion, getStudent })(
-  AddLektion
-);
+export default connect(mapStateToProps, {
+  createLektion,
+  getStudent,
+})(AddLektion);
