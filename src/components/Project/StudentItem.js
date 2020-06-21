@@ -17,8 +17,8 @@ class StudentItem extends Component {
         <div
           className={`card card-body mb-3 ${
             student.studentAktiv === 1 || student.studentAktiv === 0
-              ? "bg-info"
-              : "bg-light"
+              ? "bg-light"
+              : "bg-info"
           }`}
         >
           <div className="row">

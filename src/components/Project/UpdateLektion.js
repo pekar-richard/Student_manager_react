@@ -158,7 +158,6 @@ class UpdateLektion extends Component {
   }
 
   checkKredit() {
-    debugger;
     console.log(this.state.lektionAbrechnung);
 
     if (

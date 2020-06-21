@@ -317,8 +317,8 @@ class UpdateStudent extends Component {
                       onChange={this.onChange}
                     >
                       <option value={0}>Select Status</option>
-                      <option value={1}>nicht aktiv</option>
-                      <option value={2}>aktiv</option>
+                      <option value={1}>aktiv</option>
+                      <option value={2}>nicht aktiv</option>
                     </select>
                   </div>
                   <div className="form-group">
