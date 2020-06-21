@@ -17,7 +17,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         students: state.students.filter(
-          (student) => student.student_index !== action.payload
+          (student) => student.studentIndex !== action.payload
         ),
       };
     default:

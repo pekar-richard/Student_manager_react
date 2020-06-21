@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CreateLektionButton = ({ student_index }) => {
+const CreateLektionButton = ({ studentIndex }) => {
   return (
     <React.Fragment>
-      <Link to={`/addLektion/${student_index}`} className="btn btn-lg btn-info">
+      <Link to={`/addLektion/${studentIndex}`} className="btn btn-lg btn-info">
         Create a Lektion
       </Link>
     </React.Fragment>

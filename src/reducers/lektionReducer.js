@@ -17,7 +17,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         lektions: state.lektions.filter(
-          (lektion) => lektion.lektion_index !== action.payload
+          (lektion) => lektion.lektionIndex !== action.payload
         ),
       };
     default:

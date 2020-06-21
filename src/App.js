@@ -8,6 +8,7 @@ import StudentLektionDashboard from "./components/StudentLektionDashboard";
 import AddStudent from "./components/Project/AddStudent";
 import AddLektion from "./components/Project/AddLektion";
 import UpdateStudent from "./components/Project/UpdateStudent";
+import UpdateLektion from "./components/Project/UpdateLektion";
 
 class App extends Component {
   render() {
@@ -18,7 +19,7 @@ class App extends Component {
           <Route exact path="/dashboard" component={Dashboard} />
           <Route
             exact
-            path="/StudentLektionDashboard/:student_index"
+            path="/StudentLektionDashboard/:studentIndex"
             component={StudentLektionDashboard}
           />
           <Route
@@ -28,7 +29,12 @@ class App extends Component {
           <Route exact path="/updateStudent/:id" component={UpdateStudent} />
           <Route
             exact
-            path="/addLektion/:student_index"
+            path="/updateLektion/:lektionIndex/:studentIndex"
+            component={UpdateLektion}
+          />
+          <Route
+            exact
+            path="/addLektion/:studentIndex"
             component={AddLektion}
           />
         </div>

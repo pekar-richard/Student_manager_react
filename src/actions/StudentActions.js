@@ -35,7 +35,7 @@ export const updateStudent = (student, id, history) => async (dispatch) => {
 
 export const getStudents = () => async (dispatch) => {
   const res = await axios.get(`/api/student/allstudents`);
-  console.log(res);
+
   dispatch({
     type: GET_STUDENTS,
     payload: res.data,

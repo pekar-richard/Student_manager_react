@@ -10,24 +10,24 @@ class AddStudent extends Component {
     super();
 
     this.state = {
-      student_nachname: "",
-      student_vorname: "",
-      student_sortierung: "",
-      student_gebdat: "",
-      student_ersttermin: "",
-      student_letztermin: "",
-      student_preis45: "",
-      student_preis60: "",
-      student_preis90: "",
-      student_preis120: "",
-      student_abrechnung: "",
-      student_kredit: "",
-      student_aktiv: "",
-      student_quelle: "",
-      student_komm: "",
-      created_At: "",
-      updated_At: "",
-      agentur_index: null,
+      studentNachname: "",
+      studentVorname: "",
+      studentSortierung: "",
+      studentGebdat: "",
+      studentErsttermin: "",
+      studentLetztermin: "",
+      studentPreis45: "",
+      studentPreis60: "",
+      studentPreis90: "",
+      studentPreis120: "",
+      studentAbrechnung: "",
+      studentKredit: "",
+      studentAktiv: "",
+      studentQuelle: "",
+      studentKomm: "",
+      createdAt: "",
+      updatedAt: "",
+      agenturIndex: null,
       errors: {},
     };
 
@@ -38,24 +38,24 @@ class AddStudent extends Component {
   onSubmit(e) {
     e.preventDefault();
     const newStudent = {
-      student_nachname: this.state.student_nachname,
-      student_vorname: this.state.student_vorname,
-      student_sortierung: this.state.student_sortierung,
-      student_gebdat: this.state.student_gebdat,
-      student_ersttermin: this.state.student_ersttermin,
-      student_letztermin: this.state.student_letztermin,
-      student_preis45: this.state.student_preis45,
-      student_preis60: this.state.student_preis60,
-      student_preis90: this.state.student_preis90,
-      student_preis120: this.state.student_preis120,
-      student_abrechnung: this.state.student_abrechnung,
-      student_kredit: this.state.student_kredit,
-      student_aktiv: this.state.student_aktiv,
-      student_quelle: this.state.student_quelle,
-      student_komm: this.state.student_komm,
-      created_At: this.state.created_At,
-      updated_At: this.state.updated_At,
-      agentur_index: this.state.agentur_index,
+      studentNachname: this.state.studentNachname,
+      studentVorname: this.state.studentVorname,
+      studentSortierung: this.state.studentSortierung,
+      studentGebdat: this.state.studentGebdat,
+      studentErsttermin: this.state.studentErsttermin,
+      studentLetztermin: this.state.studentLetztermin,
+      studentPreis45: this.state.studentPreis45,
+      studentPreis60: this.state.studentPreis60,
+      studentPreis90: this.state.studentPreis90,
+      studentPreis120: this.state.studentPreis120,
+      studentAbrechnung: this.state.studentAbrechnung,
+      studentKredit: this.state.studentKredit,
+      studentAktiv: this.state.studentAktiv,
+      studentQuelle: this.state.studentQuelle,
+      studentKomm: this.state.studentKomm,
+      createdAt: this.state.createdAt,
+      updatedAt: this.state.updatedAt,
+      agenturIndex: this.state.agenturIndex,
     };
     this.props.createStudent(newStudent, this.props.history);
   }
@@ -65,8 +65,8 @@ class AddStudent extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
-    const { agentur_index } = nextProps.agentur;
-    this.setState({ agentur_index });
+    const { agenturIndex } = nextProps.agentur;
+    this.setState({ agenturIndex });
   }
 
   onChange(e) {
@@ -94,16 +94,16 @@ class AddStudent extends Component {
                     <input
                       type="text"
                       className={classnames("form-control form-control-lg ", {
-                        "is-invalid": errors.student_nachname,
+                        "is-invalid": errors.studentNachname,
                       })}
                       placeholder="Student Nachname"
-                      name="student_nachname"
-                      value={this.state.student_nachname}
+                      name="studentNachname"
+                      value={this.state.studentNachname}
                       onChange={this.onChange}
                     />
-                    {errors.student_nachname && (
+                    {errors.studentNachname && (
                       <div className="invalid-feedback">
-                        {errors.student_nachname}
+                        {errors.studentNachname}
                       </div>
                     )}
                   </div>
@@ -112,16 +112,16 @@ class AddStudent extends Component {
                     <input
                       type="text"
                       className={classnames("form-control form-control-lg ", {
-                        "is-invalid": errors.student_vorname,
+                        "is-invalid": errors.studentVorname,
                       })}
                       placeholder="Student Vorname"
-                      name="student_vorname"
-                      value={this.state.student_vorname}
+                      name="studentVorname"
+                      value={this.state.studentVorname}
                       onChange={this.onChange}
                     />
-                    {errors.student_vorname && (
+                    {errors.studentVorname && (
                       <div className="invalid-feedback">
-                        {errors.student_vorname}
+                        {errors.studentVorname}
                       </div>
                     )}
                   </div>
@@ -132,16 +132,16 @@ class AddStudent extends Component {
                       min="0"
                       step="0.1"
                       className={classnames("form-control form-control-lg ", {
-                        "is-invalid": errors.student_preis45,
+                        "is-invalid": errors.studentPreis45,
                       })}
                       placeholder="Student Preis 45"
-                      name="student_preis45"
-                      value={this.state.student_preis45}
+                      name="studentPreis45"
+                      value={this.state.studentPreis45}
                       onChange={this.onChange}
                     />
-                    {errors.student_preis45 && (
+                    {errors.studentPreis45 && (
                       <div className="invalid-feedback">
-                        {errors.student_preis45}
+                        {errors.studentPreis45}
                       </div>
                     )}
                   </div>
@@ -152,16 +152,16 @@ class AddStudent extends Component {
                       min="0"
                       step="0.1"
                       className={classnames("form-control form-control-lg ", {
-                        "is-invalid": errors.student_preis60,
+                        "is-invalid": errors.studentPreis60,
                       })}
                       placeholder="Student Preis 60"
-                      name="student_preis60"
-                      value={this.state.student_preis60}
+                      name="studentPreis60"
+                      value={this.state.studentPreis60}
                       onChange={this.onChange}
                     />
-                    {errors.student_preis60 && (
+                    {errors.studentPreis60 && (
                       <div className="invalid-feedback">
-                        {errors.student_preis60}
+                        {errors.studentPreis60}
                       </div>
                     )}
                   </div>
@@ -172,16 +172,16 @@ class AddStudent extends Component {
                       min="0"
                       step="0.1"
                       className={classnames("form-control form-control-lg ", {
-                        "is-invalid": errors.student_preis90,
+                        "is-invalid": errors.studentPreis90,
                       })}
                       placeholder="Student Preis 90"
-                      name="student_preis90"
-                      value={this.state.student_preis90}
+                      name="studentPreis90"
+                      value={this.state.studentPreis90}
                       onChange={this.onChange}
                     />
-                    {errors.student_preis90 && (
+                    {errors.studentPreis90 && (
                       <div className="invalid-feedback">
-                        {errors.student_preis90}
+                        {errors.studentPreis90}
                       </div>
                     )}
                   </div>
@@ -192,16 +192,16 @@ class AddStudent extends Component {
                       min="0"
                       step="0.1"
                       className={classnames("form-control form-control-lg ", {
-                        "is-invalid": errors.student_preis120,
+                        "is-invalid": errors.studentPreis120,
                       })}
                       placeholder="Student Preis 120"
-                      name="student_preis120"
-                      value={this.state.student_preis120}
+                      name="studentPreis120"
+                      value={this.state.studentPreis120}
                       onChange={this.onChange}
                     />
-                    {errors.student_preis120 && (
+                    {errors.studentPreis120 && (
                       <div className="invalid-feedback">
-                        {errors.student_preis120}
+                        {errors.studentPreis120}
                       </div>
                     )}
                   </div>
@@ -211,8 +211,8 @@ class AddStudent extends Component {
                     <input
                       type="date"
                       className="form-control form-control-lg"
-                      name="student_gebdat"
-                      value={this.state.student_gebdat}
+                      name="studentGebdat"
+                      value={this.state.studentGebdat}
                       onChange={this.onChange}
                     />
                   </div>
@@ -221,16 +221,16 @@ class AddStudent extends Component {
                     <input
                       type="text"
                       className={classnames("form-control form-control-lg ", {
-                        "is-invalid": errors.student_quelle,
+                        "is-invalid": errors.studentQuelle,
                       })}
                       placeholder="Student Quelle"
-                      name="student_quelle"
-                      value={this.state.student_quelle}
+                      name="studentQuelle"
+                      value={this.state.studentQuelle}
                       onChange={this.onChange}
                     />
-                    {errors.student_quelle && (
+                    {errors.studentQuelle && (
                       <div className="invalid-feedback">
-                        {errors.student_quelle}
+                        {errors.studentQuelle}
                       </div>
                     )}
                   </div>
@@ -239,16 +239,16 @@ class AddStudent extends Component {
                     <textarea
                       type="text"
                       className={classnames("form-control form-control-lg ", {
-                        "is-invalid": errors.student_komm,
+                        "is-invalid": errors.studentKomm,
                       })}
                       placeholder="Student Komentar"
-                      name="student_komm"
-                      value={this.state.student_komm}
+                      name="studentKomm"
+                      value={this.state.studentKomm}
                       onChange={this.onChange}
                     ></textarea>
-                    {errors.student_komm && (
+                    {errors.studentKomm && (
                       <div className="invalid-feedback">
-                        {errors.student_komm}
+                        {errors.studentKomm}
                       </div>
                     )}
                   </div>
@@ -256,8 +256,8 @@ class AddStudent extends Component {
                   <div className="form-group">
                     <select
                       className="form-control form-control-lg"
-                      name="student_abrechnung"
-                      value={this.state.student_abrechnung}
+                      name="studentAbrechnung"
+                      value={this.state.studentAbrechnung}
                       onChange={this.onChange}
                     >
                       <option value={0}>Select Abrechnung</option>
@@ -270,8 +270,8 @@ class AddStudent extends Component {
                   <div className="form-group">
                     <select
                       className="form-control form-control-lg"
-                      name="student_aktiv"
-                      value={this.state.student_aktiv}
+                      name="studentAktiv"
+                      value={this.state.studentAktiv}
                       onChange={this.onChange}
                     >
                       <option value={0}>Select Status</option>
@@ -283,17 +283,17 @@ class AddStudent extends Component {
                   <div className="form-group">
                     <select
                       className="form-control form-control-lg"
-                      name="agentur_index"
-                      value={this.state.agentur_index}
+                      name="agenturIndex"
+                      value={this.state.agenturIndex}
                       onChange={this.onChange}
                     >
                       <option value="">Select Agentur</option>
                       {agenturs.map((agentur) => (
                         <option
-                          key={agentur.agentur_index}
-                          value={agentur.agentur_index}
+                          key={agentur.agenturIndex}
+                          value={agentur.agenturIndex}
                         >
-                          {agentur.agentur_kurzname}
+                          {agentur.agenturKurzname}
                         </option>
                       ))}
                     </select>

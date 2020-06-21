@@ -12,6 +12,7 @@ class Dashboard extends Component {
 
   render() {
     const { students } = this.props.student;
+    let i = 1;
     return (
       <div className="projects">
         <div className="container">
@@ -23,7 +24,11 @@ class Dashboard extends Component {
               <br />
               <hr />
               {students.map((student) => (
-                <StudentItem key={student.student_index} student={student} />
+                <StudentItem
+                  key={student.studentIndex}
+                  student={student}
+                  increment={i++}
+                />
               ))}
             </div>
           </div>

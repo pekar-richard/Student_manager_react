@@ -17,7 +17,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         agenturs: state.agenturs.filter(
-          (agentur) => agentur.agentur_index !== action.payload
+          (agentur) => agentur.agenturIndex !== action.payload
         ),
       };
     default:

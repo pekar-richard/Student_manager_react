@@ -10,33 +10,41 @@ class StudentItem extends Component {
   };
   render() {
     const { student } = this.props;
+    const { increment } = this.props;
+
     return (
       <div className="container">
-        <div className="card card-body bg-light mb-3">
+        <div
+          className={`card card-body mb-3 ${
+            student.studentAktiv === 1 || student.studentAktiv === 0
+              ? "bg-info"
+              : "bg-light"
+          }`}
+        >
           <div className="row">
             <div className="col-2">
-              <span className="mx-auto">{student.student_index}</span>
+              <span className="mx-auto">{increment}</span>
             </div>
             <div className="col-lg-6 col-md-4 col-8">
-              <h3>{student.student_nachname}</h3>
-              <p>{student.student_vorname}</p>
-              <p>{student.student_kredit} euro</p>
+              <h3>{student.studentNachname}</h3>
+              <p>{student.studentVorname}</p>
+              <p>{student.studentKredit} euro</p>
             </div>
             <div className="col-md-4 d-none d-lg-block">
               <ul className="list-group">
-                <Link to={`/StudentLektionDashboard/${student.student_index}`}>
+                <Link to={`/StudentLektionDashboard/${student.studentIndex}`}>
                   <li className="list-group-item board">
                     <i className="fa fa-flag-checkered pr-1"> Student Board </i>
                   </li>
                 </Link>
-                <Link to={`/updateStudent/${student.student_index}`}>
+                <Link to={`/updateStudent/${student.studentIndex}`}>
                   <li className="list-group-item update">
                     <i className="fa fa-edit pr-1"> Update Student</i>
                   </li>
                 </Link>
                 <li
                   className="list-group-item delete"
-                  onClick={this.onDeleteClick.bind(this, student.student_index)}
+                  onClick={this.onDeleteClick.bind(this, student.studentIndex)}
                 >
                   <i className="fa fa-minus-circle pr-1"> Delete Student</i>
                 </li>

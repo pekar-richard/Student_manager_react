@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import { createLektion } from "../../actions/LektionActions";
+import { getLektion } from "../../actions/LektionActions";
 import { getStudent } from "../../actions/StudentActions";
 import { getZahlungsByStudentID } from "../../actions/ZahlungActions";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { formatDateTimeLocal, formatDateLocal } from "../../tools";
 
-class AddLektion extends Component {
+class UpdateLektion extends Component {
   constructor() {
     super();
 
@@ -23,10 +24,12 @@ class AddLektion extends Component {
       studentPreis60: "",
       studentPreis90: "",
       studentPreis120: "",
+      studentSortierung: "",
       //Lektion daten
-      lektionDatum: formatDateTimeLocal(new Date()),
+      lektionIndex: "",
+      lektionDatum: "",
       lektionMin: "",
-      lektionPreis: 0,
+      lektionPreis: "",
       lektionArt: "",
       lektionStatus: "",
       lektionAbrechnung: "",
@@ -43,17 +46,83 @@ class AddLektion extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  //life cycle hooks
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+
+    const {
+      //Student daten
+      studentKredit,
+      studentPreis45,
+      studentPreis60,
+      studentPreis90,
+      studentPreis120,
+      studentSortierung,
+    } = nextProps.student.student;
+
+    const {
+      //Zahlung daten
+      zahlungsByStudentID,
+    } = nextProps.zahlung;
+
+    const {
+      //Lektion daten
+      lektionIndex,
+      lektionDatum = "",
+      lektionMin,
+      lektionPreis,
+      lektionArt,
+      lektionStatus,
+      lektionAbrechnung,
+      lektionRgnr,
+      lektionBezahlt,
+      createdAt,
+      updatedAt,
+      studentIndex,
+      agenturIndex,
+    } = nextProps.lektion.lektion;
+
+    this.setState({
+      //Zahlung daten
+      zahlungsByStudentID,
+      //Student daten
+      studentKredit,
+      studentPreis45,
+      studentPreis60,
+      studentPreis90,
+      studentPreis120,
+      studentSortierung,
+      //Lektion daten
+      lektionDatum: formatDateTimeLocal(lektionDatum),
+      lektionIndex,
+      lektionMin,
+      lektionPreis,
+      lektionArt,
+      lektionStatus,
+      lektionAbrechnung,
+      lektionRgnr: parseInt(lektionRgnr),
+      lektionBezahlt,
+      createdAt,
+      updatedAt,
+      studentIndex,
+      agenturIndex,
+    });
+  }
+
   onSubmit(e) {
     e.preventDefault();
 
     const newLektion = {
       lektionDatum: new Date(this.state.lektionDatum).toISOString(),
+      lektionIndex: this.state.lektionIndex,
       lektionMin: this.state.lektionMin,
       lektionPreis: this.state.lektionPreis,
       lektionArt: this.state.lektionArt,
       lektionStatus: this.state.lektionStatus,
       lektionAbrechnung: this.state.lektionAbrechnung,
-      lektionRgnr: this.state.lektionRgnr,
+      lektionRgnr: parseInt(this.state.lektionRgnr),
       lektionBezahlt: this.state.lektionBezahlt,
       createdAt: this.state.createdAt,
       updatedAt: this.state.updatedAt,
@@ -68,52 +137,12 @@ class AddLektion extends Component {
     );
   }
 
-  //life cycle hooks
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
-
-    const {
-      //Student daten
-      studentKredit,
-      studentPreis45,
-      studentPreis60,
-      studentPreis90,
-      studentPreis120,
-      studentAbrechnung,
-      studentIndex,
-      agenturIndex,
-    } = nextProps.student.student;
-
-    const {
-      //Zahlung daten
-      zahlungsByStudentID,
-    } = nextProps.zahlung;
-
-    this.setState({
-      //Zahlung daten
-      zahlungsByStudentID,
-      //Student daten
-      lektionAbrechnung: studentAbrechnung,
-      studentIndex,
-      agenturIndex,
-      studentPreis45,
-      studentPreis60,
-      studentPreis90,
-      studentPreis120,
-      studentKredit,
-    });
-  }
-
   componentDidMount() {
-    const { studentIndex } = this.props.match.params;
-    this.props.getStudent(studentIndex, this.props.history);
-    this.props.getZahlungsByStudentID(studentIndex, this.props.history);
+    const { lektionIndex, studentIndex } = this.props.match.params;
 
-    this.setState({
-      studentIndex,
-    });
+    this.props.getStudent(studentIndex, this.props.history);
+    this.props.getLektion(lektionIndex, this.props.history);
+    this.props.getZahlungsByStudentID(studentIndex, this.props.history);
   }
 
   onChange(e) {
@@ -218,6 +247,8 @@ class AddLektion extends Component {
   render() {
     const { errors } = this.state;
     const { student } = this.props.student;
+    const { lektion } = this.props.lektion;
+
     return (
       <div>
         <div className="project">
@@ -225,7 +256,7 @@ class AddLektion extends Component {
             <div className="row">
               <div className="col-md-8 m-auto">
                 <h3 className="display-4 text-center">
-                  Create Lektion for Student {student.studentSortierung}
+                  Create Lektion for Student {this.state.studentSortierung}
                 </h3>
                 <hr />
                 <form onSubmit={this.onSubmit}>
@@ -235,7 +266,7 @@ class AddLektion extends Component {
                       type="datetime-local"
                       className="form-control form-control-lg"
                       name="lektionDatum"
-                      value={this.state.lektionDatum}
+                      value={this.state.lektionDatum || ""}
                       onChange={this.onChange}
                     />
                   </div>
@@ -265,7 +296,7 @@ class AddLektion extends Component {
                       })}
                       placeholder="Lektion Preis"
                       name="lektionPreis"
-                      value={this.state.lektionPreis}
+                      value={this.state.lektionPreis || ""}
                       onChange={this.onChange}
                     />
                     {errors.lektionPreis && (
@@ -324,13 +355,13 @@ class AddLektion extends Component {
                     <input
                       type="number"
                       min="0"
-                      step="0.1"
+                      step="1"
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.lektionRgnr,
                       })}
-                      placeholder="Lektion RGNR"
+                      placeholder="Lektion Rgnr"
                       name="lektionRgnr"
-                      value={this.state.lektionRgnr}
+                      value={this.state.lektionRgnr || ""}
                       onChange={this.onChange}
                     />
                     {errors.lektionRgnr && (
@@ -346,7 +377,7 @@ class AddLektion extends Component {
                       type="date"
                       className="form-control form-control-lg"
                       name="lektionBezahlt"
-                      value={this.state.lektionBezahlt}
+                      value={this.state.lektionBezahlt || ""}
                       onChange={this.onChange}
                     />
                   </div>
@@ -365,22 +396,24 @@ class AddLektion extends Component {
   }
 }
 
-AddLektion.propTypes = {
+UpdateLektion.propTypes = {
   createLektion: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
+  getLektion: PropTypes.func.isRequired,
   getStudent: PropTypes.func.isRequired,
   getZahlungsByStudentID: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   errors: state.errors,
+  lektion: state.lektion,
   student: state.student,
   zahlung: state.zahlung,
 });
 
 export default connect(mapStateToProps, {
   createLektion,
-  getStudent,
+  getLektion,
   getStudent,
   getZahlungsByStudentID,
-})(AddLektion);
+})(UpdateLektion);

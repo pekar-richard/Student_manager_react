@@ -11,42 +11,44 @@ class StudentLektionDashboard extends Component {
     super();
 
     this.state = {
-      student_index: "",
+      studentIndex: "",
     };
   }
 
   componentDidMount() {
     this.props.getLektions();
 
-    const { student_index } = this.props.match.params;
-    this.props.getStudent(student_index);
+    const { studentIndex } = this.props.match.params;
+    this.props.getStudent(studentIndex);
 
     this.setState({
-      student_index: student_index,
+      studentIndex: studentIndex,
     });
   }
 
   render() {
     const { lektions } = this.props.lektion;
     const { student } = this.props.student;
+    let i = 1;
     return (
       <div className="projects">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
               <h1 className="display-4 text-center">
-                Lektionen {student.student_sortierung}
+                Lektionen {student.studentSortierung}
               </h1>
               <br />
-              <CreateLektionButton student_index={this.state.student_index} />
+              <CreateLektionButton studentIndex={this.state.studentIndex} />
               <br />
               <hr />
               {lektions.map(
                 (lektion) =>
-                  lektion.student_index == this.state.student_index && (
+                  lektion.studentIndex == this.state.studentIndex && (
                     <LektionItem
-                      key={lektion.lektion_index}
+                      key={lektion.lektionIndex}
                       lektion={lektion}
+                      increment={i++}
                     />
                   )
               )}
