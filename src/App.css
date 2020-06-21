@@ -16,12 +16,12 @@ img {
 
 .list-group-item.update:hover {
   cursor: -webkit-grab;
-  background-color: gainsboro;
+  background-color: #acffe3;
 }
 
 .list-group-item.board:hover {
   cursor: -webkit-grab;
-  background-color: gainsboro;
+  background-color: #d4c6f1;
 }
 
 .fa.fa-minus-circle {
@@ -62,4 +62,41 @@ img {
 
 .form-control::placeholder {
   color: #bbb !important;
+}
+
+.lektion-in-past {
+  background-color: #e0ffff !important;
+}
+
+.lektion-in-future {
+  background-color: #ffe6e6 !important;
+}
+
+.linkButton {
+  text-decoration: none !important;
+}
+
+.student-aktiv {
+  background-color: #e0ffff !important;
+}
+
+.student-nichtaktiv {
+  background-color: #ffe6e6 !important;
+}
+
+.CreateAgenturButton {
+  float: right;
+  position: absolute;
+  top: 122px;
+  left: 205px;
+}
+
+.CreateStudentButton {
+}
+
+.AgenturBoardButton {
+  float: right;
+  position: absolute;
+  top: 122px;
+  left: 205px;
 }

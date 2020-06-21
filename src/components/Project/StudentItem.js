@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteStudent } from "../../actions/StudentActions";
+import "../../App.css";
 
 class StudentItem extends Component {
   onDeleteClick = (id) => {
@@ -17,8 +18,8 @@ class StudentItem extends Component {
         <div
           className={`card card-body mb-3 ${
             student.studentAktiv === 1 || student.studentAktiv === 0
-              ? "bg-light"
-              : "bg-info"
+              ? "student-aktiv"
+              : "student-nichtaktiv"
           }`}
         >
           <div className="row">
@@ -28,16 +29,22 @@ class StudentItem extends Component {
             <div className="col-lg-6 col-md-4 col-8">
               <h3>{student.studentNachname}</h3>
               <p>{student.studentVorname}</p>
-              <p>{student.studentKredit} euro</p>
+              <p>Kredit: {student.studentKredit} euro</p>
             </div>
             <div className="col-md-4 d-none d-lg-block">
               <ul className="list-group">
-                <Link to={`/StudentLektionDashboard/${student.studentIndex}`}>
+                <Link
+                  className="linkButton"
+                  to={`/StudentLektionDashboard/${student.studentIndex}`}
+                >
                   <li className="list-group-item board">
                     <i className="fa fa-flag-checkered pr-1"> Student Board </i>
                   </li>
                 </Link>
-                <Link to={`/updateStudent/${student.studentIndex}`}>
+                <Link
+                  className="linkButton"
+                  to={`/updateStudent/${student.studentIndex}`}
+                >
                   <li className="list-group-item update">
                     <i className="fa fa-edit pr-1"> Update Student</i>
                   </li>

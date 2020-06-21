@@ -129,7 +129,9 @@ class UpdateStudent extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-8 m-auto">
-                <h5 className="display-4 text-center">Create Student form</h5>
+                <h5 className="display-4 text-center">
+                  der Schüler {this.state.studentSortierung} aktualisieren
+                </h5>
                 <hr />
                 <form onSubmit={this.onSubmit}>
                   <div className="form-group">
@@ -357,6 +359,7 @@ UpdateStudent.propType = {
   getStudent: PropTypes.func.isRequired,
   createStudent: PropTypes.func.isRequired,
   student: PropTypes.object.isRequired,
+  agentur: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   getAgenturs: PropTypes.func.isRequired,
 };

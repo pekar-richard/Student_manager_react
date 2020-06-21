@@ -36,7 +36,7 @@ class StudentLektionDashboard extends Component {
           <div className="row">
             <div className="col-md-12">
               <h1 className="display-4 text-center">
-                Lektionen {student.studentSortierung}
+                Alle Lektionen {student.studentSortierung}
               </h1>
               <br />
               <CreateLektionButton studentIndex={this.state.studentIndex} />

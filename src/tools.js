@@ -37,17 +37,17 @@ export function formatDateTime(d) {
   // (22.02.2020 der Sonntag um 01:00)
   var d = new Date(d);
   var days = [
-    "der Sonntag",
-    "der Montag",
-    "der Dienstag",
-    "der Mittwoch",
-    "der Donnerstag",
-    "der Freitag",
-    "der Samstag",
+    "Am Sonntag",
+    "Am Montag",
+    "Am Dienstag",
+    "Am Mittwoch",
+    "Am Donnerstag",
+    "Am Freitag",
+    "Am Samstag",
   ];
   return (
     days[d.getDay()] +
-    " " +
+    " den " +
     d.getDate().toString().padStart(2, "0") +
     "." +
     (d.getMonth() + 1).toString().padStart(2, "0") +

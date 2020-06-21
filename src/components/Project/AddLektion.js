@@ -129,7 +129,6 @@ class AddLektion extends Component {
   }
 
   checkKredit() {
-    debugger;
     console.log(this.state.lektionAbrechnung);
 
     if (
@@ -225,7 +224,7 @@ class AddLektion extends Component {
             <div className="row">
               <div className="col-md-8 m-auto">
                 <h3 className="display-4 text-center">
-                  Create Lektion for Student {student.studentSortierung}
+                  Create Lektion für den Student {student.studentSortierung}
                 </h3>
                 <hr />
                 <form onSubmit={this.onSubmit}>

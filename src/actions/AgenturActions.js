@@ -4,7 +4,7 @@ import { GET_ERRORS, GET_AGENTUR, GET_AGENTURS, DELETE_AGENTUR } from "./types";
 export const createAgentur = (agentur, history) => async (dispatch) => {
   try {
     await axios.post("/api/agentur/", agentur);
-    history.push("/dashboard");
+    history.push("/AgenturDashboard");
     dispatch({
       type: GET_ERRORS,
       payload: {},

@@ -15,7 +15,7 @@ class UpdateLektion extends Component {
 
     this.state = {
       nichtgenugkredit: false,
-      nichtgenugkreditmessage: "Der Student hast nicht genug kredit!",
+      nichtgenugkreditmessage: "Der Student hast nicht genug Kredit!",
       //Zahlung daten
       zahlungsByStudentID: [],
       //Student daten
@@ -255,7 +255,8 @@ class UpdateLektion extends Component {
             <div className="row">
               <div className="col-md-8 m-auto">
                 <h3 className="display-4 text-center">
-                  Create Lektion for Student {this.state.studentSortierung}
+                  der Schüler {this.state.studentSortierung} Lektion
+                  aktualisieren
                 </h3>
                 <hr />
                 <form onSubmit={this.onSubmit}>

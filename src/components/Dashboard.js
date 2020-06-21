@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { getStudents } from "../actions/StudentActions";
 import StudentItem from "./Project/StudentItem";
 import CreateStudentButton from "./Project/CreateStudentButton";
+import AgenturBoardButton from "./Project/AgenturBoardButton";
+import "../App.css";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -18,10 +20,15 @@ class Dashboard extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4 text-center">Students</h1>
               <br />
-              <CreateStudentButton />
+              <h1 className="display-4 text-center">Alle Studenten</h1>
               <br />
+              <div className="CreateStudentButton">
+                <CreateStudentButton />
+              </div>
+              <div className="AgenturBoardButton">
+                <AgenturBoardButton />
+              </div>
               <hr />
               {students.map((student) => (
                 <StudentItem
