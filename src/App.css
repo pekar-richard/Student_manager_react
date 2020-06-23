@@ -100,3 +100,23 @@ img {
   top: 122px;
   left: 205px;
 }
+
+.ZahlungBoardButton {
+  float: right;
+  position: absolute;
+  top: 147px;
+  left: 205px;
+}
+
+.CreateLektionButton {
+}
+
+.ZahlungBackButton {
+  float: right;
+  position: absolute;
+  top: 149px;
+  left: 1036px;
+}
+
+.CreateZahlungButton {
+}

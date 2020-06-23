@@ -20,7 +20,7 @@ export default function (state = initialState, action) {
     case DELETE_ZAHLUNG:
       return {
         ...state,
-        zahlungs: state.zahlungs.filter(
+        zahlungsByStudentID: state.zahlungsByStudentID.filter(
           (zahlung) => zahlung.zahlungIndex !== action.payload
         ),
       };

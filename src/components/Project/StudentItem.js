@@ -12,7 +12,6 @@ class StudentItem extends Component {
   render() {
     const { student } = this.props;
     const { increment } = this.props;
-
     return (
       <div className="container">
         <div

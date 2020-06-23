@@ -6,9 +6,11 @@ import Header from "./components/Layout/Header";
 import Dashboard from "./components/Dashboard";
 import StudentLektionDashboard from "./components/StudentLektionDashboard";
 import AgenturDashboard from "./components/AgenturDashboard";
+import ZahlungDashboard from "./components/ZahlungDashboard";
 import AddStudent from "./components/Project/AddStudent";
 import AddLektion from "./components/Project/AddLektion";
 import AddAgentur from "./components/Project/AddAgentur";
+import AddZahlung from "./components/Project/AddZahlung";
 import UpdateStudent from "./components/Project/UpdateStudent";
 import UpdateLektion from "./components/Project/UpdateLektion";
 import UpdateAgentur from "./components/Project/UpdateAgentur";
@@ -60,6 +62,11 @@ class App extends Component {
 
           <Route
             exact
+            path="/addZahlung/:studentIndex"
+            render={(props) => <AddZahlung {...props} isAuthed={true} />}
+          />
+          <Route
+            exact
             path="/addLektion/:studentIndex"
             render={(props) => <AddLektion {...props} isAuthed={true} />}
           />
@@ -74,6 +81,12 @@ class App extends Component {
             exact
             path="/AgenturDashboard"
             render={(props) => <AgenturDashboard {...props} isAuthed={true} />}
+          />
+
+          <Route
+            exact
+            path="/ZahlungDashboard/:studentIndex"
+            render={(props) => <ZahlungDashboard {...props} isAuthed={true} />}
           />
         </div>
       </Router>

@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 import { getLektions } from "../actions/LektionActions";
 import LektionItem from "./Project/LektionItem";
 import CreateLektionButton from "./Project/CreateLektionButton";
+import ZahlungBoardButton from "./Project/ZahlungBoardButton";
 import { getStudent } from "../actions/StudentActions";
+import "../App.css";
 
 class StudentLektionDashboard extends Component {
   constructor() {
@@ -35,12 +37,18 @@ class StudentLektionDashboard extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
+              <br />
               <h1 className="display-4 text-center">
                 Alle Lektionen {student.studentSortierung}
               </h1>
               <br />
-              <CreateLektionButton studentIndex={this.state.studentIndex} />
               <br />
+              <div className="CreateLektionButton">
+                <CreateLektionButton studentIndex={this.state.studentIndex} />
+              </div>
+              <div className="ZahlungBoardButton">
+                <ZahlungBoardButton studentIndex={this.state.studentIndex} />
+              </div>
               <hr />
               {lektions.map(
                 (lektion) =>

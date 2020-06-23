@@ -7,10 +7,12 @@ import {
   GET_ZAHLUNGS_BYSTUDENTID,
 } from "./types";
 
-export const createZahlung = (zahlung, history) => async (dispatch) => {
+export const createZahlung = (zahlung, student_index, history) => async (
+  dispatch
+) => {
   try {
     await axios.post("/api/zahlung/", zahlung);
-    history.push("/dashboard");
+    history.push(`/ZahlungDashboard/${student_index}`);
     dispatch({
       type: GET_ERRORS,
       payload: {},
