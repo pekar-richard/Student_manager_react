@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getStudent, createStudent } from "../../actions/StudentActions";
+import { getStudent, updateStudent } from "../../actions/StudentActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
@@ -112,7 +112,11 @@ class UpdateStudent extends Component {
       updatedAt: this.state.updatedAt,
       agenturIndex: this.state.agenturIndex,
     };
-    this.props.createStudent(UpdateStudent, this.props.history);
+    this.props.updateStudent(
+      UpdateStudent,
+      this.state.studentIndex,
+      this.props.history
+    );
   }
 
   componentDidMount() {
@@ -357,7 +361,7 @@ class UpdateStudent extends Component {
 
 UpdateStudent.propType = {
   getStudent: PropTypes.func.isRequired,
-  createStudent: PropTypes.func.isRequired,
+  updateStudent: PropTypes.func.isRequired,
   student: PropTypes.object.isRequired,
   agentur: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
@@ -372,6 +376,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   getStudent,
-  createStudent,
+  updateStudent,
   getAgenturs,
 })(UpdateStudent);

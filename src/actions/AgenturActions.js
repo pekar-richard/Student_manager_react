@@ -20,7 +20,7 @@ export const createAgentur = (agentur, history) => async (dispatch) => {
 export const updateAgentur = (agentur, id, history) => async (dispatch) => {
   try {
     const res = await axios.put(`/api/agentur/${id}`, agentur);
-    history.push(`/studentBoard/${id}`);
+    history.push(`/AgenturDashboard`);
     dispatch({
       type: GET_ERRORS,
       payload: {},

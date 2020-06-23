@@ -4,9 +4,8 @@ import { connect } from "react-redux";
 import classnames from "classnames";
 import { createLektion } from "../../actions/LektionActions";
 import { getStudent } from "../../actions/StudentActions";
-import { getZahlungsByStudentID } from "../../actions/ZahlungActions";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { formatDateTimeLocal, formatDateLocal } from "../../tools";
+import { formatDateTimeLocal } from "../../tools";
 
 class AddLektion extends Component {
   constructor() {
@@ -14,9 +13,7 @@ class AddLektion extends Component {
 
     this.state = {
       nichtgenugkredit: false,
-      nichtgenugkreditmessage: "Der Student hast nicht genug kredit!",
-      //Zahlung daten
-      zahlungsByStudentID: [],
+      nichtgenugkreditmessage: "Der Student hast nicht genug Kredit!",
       //Student daten
       studentKredit: "",
       studentPreis45: "",
@@ -29,13 +26,11 @@ class AddLektion extends Component {
       lektionPreis: 0,
       lektionArt: "",
       lektionStatus: "",
-      lektionAbrechnung: "",
-      lektionRgnr: "",
-      lektionBezahlt: "",
       createdAt: "",
       updatedAt: "",
       studentIndex: "",
       agenturIndex: "",
+      zahlungIndex: "",
       errors: {},
     };
 
@@ -52,13 +47,11 @@ class AddLektion extends Component {
       lektionPreis: this.state.lektionPreis,
       lektionArt: this.state.lektionArt,
       lektionStatus: this.state.lektionStatus,
-      lektionAbrechnung: this.state.lektionAbrechnung,
-      lektionRgnr: this.state.lektionRgnr,
-      lektionBezahlt: this.state.lektionBezahlt,
       createdAt: this.state.createdAt,
       updatedAt: this.state.updatedAt,
       studentIndex: this.state.studentIndex,
       agenturIndex: this.state.agenturIndex,
+      zahlungIndex: this.state.zahlungIndex,
     };
 
     this.props.createLektion(
@@ -81,21 +74,12 @@ class AddLektion extends Component {
       studentPreis60,
       studentPreis90,
       studentPreis120,
-      studentAbrechnung,
       studentIndex,
       agenturIndex,
     } = nextProps.student.student;
 
-    const {
-      //Zahlung daten
-      zahlungsByStudentID,
-    } = nextProps.zahlung;
-
     this.setState({
-      //Zahlung daten
-      zahlungsByStudentID,
       //Student daten
-      lektionAbrechnung: studentAbrechnung,
       studentIndex,
       agenturIndex,
       studentPreis45,
@@ -109,7 +93,6 @@ class AddLektion extends Component {
   componentDidMount() {
     const { studentIndex } = this.props.match.params;
     this.props.getStudent(studentIndex, this.props.history);
-    this.props.getZahlungsByStudentID(studentIndex, this.props.history);
 
     this.setState({
       studentIndex,
@@ -122,42 +105,19 @@ class AddLektion extends Component {
     if (e.target.name === "lektionMin") {
       this.lektionPrice(e.target.value);
     }
-
-    if (e.target.name === "lektionAbrechnung") {
-      this.lektionBezaltDatum(e.target.value);
-    }
   }
 
   checkKredit() {
-    console.log(this.state.lektionAbrechnung);
-
-    if (
-      this.state.lektionAbrechnung === 2 ||
-      this.state.lektionAbrechnung === "2"
-    ) {
-      if (this.state.studentKredit >= this.state.lektionPreis) {
-        if (this.state.nichtgenugkredit === true) {
-          this.setState({
-            nichtgenugkredit: false,
-          });
-          let zalungenLength = this.state.zahlungsByStudentID.length - 1;
-          this.setState({
-            lektionBezahlt: this.state.zahlungsByStudentID[zalungenLength]
-              .zahlungDatum,
-          });
-        }
-      } else {
-        if (this.state.nichtgenugkredit === false) {
-          this.setState({
-            nichtgenugkredit: true,
-          });
-          this.setState({ lektionBezahlt: "" });
-        }
-      }
-    } else {
+    if (this.state.studentKredit >= this.state.lektionPreis) {
       if (this.state.nichtgenugkredit === true) {
         this.setState({
           nichtgenugkredit: false,
+        });
+      }
+    } else {
+      if (this.state.nichtgenugkredit === false) {
+        this.setState({
+          nichtgenugkredit: true,
         });
       }
     }
@@ -186,31 +146,6 @@ class AddLektion extends Component {
 
     if (lektionMin === "120") {
       this.setState({ lektionPreis: this.state.studentPreis120 });
-    }
-  };
-
-  lektionBezaltDatum = (lektionAbrechnung) => {
-    if (lektionAbrechnung === 0 || lektionAbrechnung === "0") {
-      this.setState({ lektionBezahlt: "" });
-    }
-
-    if (lektionAbrechnung === 1 || lektionAbrechnung === "1") {
-      this.setState({ lektionBezahlt: formatDateLocal(new Date()) });
-    }
-
-    if (lektionAbrechnung === 2 || lektionAbrechnung === "2") {
-      if (this.state.studentKredit >= this.state.lektionPreis) {
-        let zalungenLength = this.state.zahlungsByStudentID.length - 1;
-
-        this.setState({
-          lektionBezahlt: this.state.zahlungsByStudentID[zalungenLength]
-            .zahlungDatum,
-        });
-      }
-    }
-
-    if (lektionAbrechnung === 3 || lektionAbrechnung === "3") {
-      this.setState({ lektionBezahlt: "" });
     }
   };
 
@@ -305,51 +240,6 @@ class AddLektion extends Component {
                     </select>
                   </div>
 
-                  <div className="form-group">
-                    <select
-                      className="form-control form-control-lg"
-                      name="lektionAbrechnung"
-                      value={this.state.lektionAbrechnung}
-                      onChange={this.onChange}
-                    >
-                      <option value={0}>Select Abrechnung</option>
-                      <option value={1}>Bar</option>
-                      <option value={2}>Kredit</option>
-                      <option value={3}>Rehnung</option>
-                    </select>
-                  </div>
-
-                  <div className="form-group">
-                    <input
-                      type="number"
-                      min="0"
-                      step="0.1"
-                      className={classnames("form-control form-control-lg ", {
-                        "is-invalid": errors.lektionRgnr,
-                      })}
-                      placeholder="Lektion RGNR"
-                      name="lektionRgnr"
-                      value={this.state.lektionRgnr}
-                      onChange={this.onChange}
-                    />
-                    {errors.lektionRgnr && (
-                      <div className="invalid-feedback">
-                        {errors.lektionRgnr}
-                      </div>
-                    )}
-                  </div>
-
-                  <h6>Lektion bezahlt</h6>
-                  <div className="form-group">
-                    <input
-                      type="date"
-                      className="form-control form-control-lg"
-                      name="lektionBezahlt"
-                      value={this.state.lektionBezahlt}
-                      onChange={this.onChange}
-                    />
-                  </div>
-
                   <input
                     type="submit"
                     className="btn btn-primary btn-block mt-4"
@@ -368,18 +258,15 @@ AddLektion.propTypes = {
   createLektion: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   getStudent: PropTypes.func.isRequired,
-  getZahlungsByStudentID: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   errors: state.errors,
   student: state.student,
-  zahlung: state.zahlung,
 });
 
 export default connect(mapStateToProps, {
   createLektion,
   getStudent,
   getStudent,
-  getZahlungsByStudentID,
 })(AddLektion);
