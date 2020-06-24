@@ -47,6 +47,7 @@ class ZahlungDashboard extends Component {
                   (kredit = kredit + zahlung.zahlungBetrag),
                   (
                     <ZahlungItem
+                      student_index={this.props.match.params.studentIndex}
                       studentKreditSum={kredit}
                       key={zahlung.zahlungIndex}
                       zahlung={zahlung}

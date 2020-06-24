@@ -14,6 +14,7 @@ import AddZahlung from "./components/Project/AddZahlung";
 import UpdateStudent from "./components/Project/UpdateStudent";
 import UpdateLektion from "./components/Project/UpdateLektion";
 import UpdateAgentur from "./components/Project/UpdateAgentur";
+import UpdateZahlung from "./components/Project/UpdateZahlung";
 
 class App extends Component {
   render() {
@@ -38,6 +39,12 @@ class App extends Component {
             exact
             path="/updateAgentur/:id"
             render={(props) => <UpdateAgentur {...props} isAuthed={true} />}
+          />
+
+          <Route
+            exact
+            path="/updateZahlung/:zahlungIndex/:studentIndex"
+            render={(props) => <UpdateZahlung {...props} isAuthed={true} />}
           />
 
           <Route

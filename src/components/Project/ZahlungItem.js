@@ -15,6 +15,7 @@ class ZahlungItem extends Component {
     const { zahlung } = this.props;
     const { increment } = this.props;
     const { studentKreditSum } = this.props;
+    const { student_index } = this.props;
     return (
       <div className="container">
         <div
@@ -38,7 +39,7 @@ class ZahlungItem extends Component {
                 <ul className="list-group">
                   <Link
                     className="linkButton"
-                    to={`/updateZahlung/${zahlung.zahlungIndex}`}
+                    to={`/updateZahlung/${zahlung.zahlungIndex}/${student_index}`}
                   >
                     <li className="list-group-item update">
                       <i className="fa fa-edit pr-1"> Update Zahlung</i>

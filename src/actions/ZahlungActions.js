@@ -25,10 +25,12 @@ export const createZahlung = (zahlung, student_index, history) => async (
   }
 };
 
-export const updateZahlung = (zahlung, id, history) => async (dispatch) => {
+export const updateZahlung = (zahlung, id, student_index, history) => async (
+  dispatch
+) => {
   try {
     const res = await axios.put(`/api/zahlung/${id}`, zahlung);
-    history.push("/dashboard");
+    history.push(`/ZahlungDashboard/${student_index}`);
     dispatch({
       type: GET_ERRORS,
       payload: {},

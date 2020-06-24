@@ -2,22 +2,21 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
-import { createZahlung } from "../../actions/ZahlungActions";
+import { updateZahlung } from "../../actions/ZahlungActions";
 import { getZahlung } from "../../actions/ZahlungActions";
 import { getStudent } from "../../actions/StudentActions";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { formatDateLocal } from "../../tools";
 
-class AddZahlung extends Component {
+class UpdateZahlung extends Component {
   constructor() {
     super();
 
     this.state = {
-      //Student Daten
-      studentAbrechnung: 0,
       //Zahlung daten
       rechnungnichtfillout: false,
       rechnungnichtfilloutmessage: "Bitte tragen Sie die Rechnungsnummer ein!",
+      zahlungIndex: "",
       zahlungDatum: formatDateLocal(new Date()),
       zahlungBetrag: "",
       zahlungKonto: "",
@@ -36,10 +35,49 @@ class AddZahlung extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  //life cycle hooks
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+
+    const {
+      //Zahlung daten
+      zahlungIndex,
+      zahlungDatum,
+      zahlungBetrag,
+      zahlungKonto,
+      zahlungSteuer,
+      zahlungRgnr,
+      zahlungKomm,
+      zahlungAbrechnung,
+      createdAt,
+      updatedAt,
+      studentIndex,
+      lektionIndex,
+    } = nextProps.zahlung.zahlung;
+
+    this.setState({
+      zahlungIndex,
+      zahlungDatum,
+      zahlungBetrag,
+      zahlungKonto,
+      zahlungSteuer,
+      zahlungRgnr,
+      zahlungKomm,
+      zahlungAbrechnung,
+      createdAt,
+      updatedAt,
+      studentIndex,
+      lektionIndex,
+    });
+  }
+
   onSubmit(e) {
     e.preventDefault();
 
     const newZahlung = {
+      zahlungIndex: this.state.zahlungIndex,
       zahlungDatum: new Date(this.state.zahlungDatum).toISOString(),
       zahlungBetrag: this.state.zahlungBetrag,
       zahlungKonto: this.state.zahlungKonto,
@@ -54,38 +92,24 @@ class AddZahlung extends Component {
     };
 
     if (this.zahlungRechnungCheck(this.state.zahlungRgnr) != false) {
-      this.props.createZahlung(
+      this.props.updateZahlung(
         newZahlung,
+        this.state.zahlungIndex,
         this.state.studentIndex,
         this.props.history
       );
     }
   }
 
-  //life cycle hooks
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
-
-    const {
-      //Student daten
-      studentAbrechnung,
-    } = nextProps.student.student;
-
-    this.setState({
-      //Student daten
-      studentAbrechnung,
-      zahlungAbrechnung: studentAbrechnung,
-    });
-  }
-
   componentDidMount() {
     const { studentIndex } = this.props.match.params;
+    const { zahlungIndex } = this.props.match.params;
     this.props.getStudent(studentIndex, this.props.history);
+    this.props.getZahlung(zahlungIndex, this.props.history);
 
     this.setState({
       studentIndex,
+      zahlungIndex,
     });
   }
 
@@ -94,7 +118,6 @@ class AddZahlung extends Component {
   }
 
   zahlungRechnungCheck = (rechnungNummer) => {
-    console.log(rechnungNummer);
     if (
       this.state.zahlungAbrechnung === 3 ||
       this.state.zahlungAbrechnung === "3"
@@ -265,8 +288,8 @@ class AddZahlung extends Component {
   }
 }
 
-AddZahlung.propTypes = {
-  createZahlung: PropTypes.func.isRequired,
+UpdateZahlung.propTypes = {
+  updateZahlung: PropTypes.func.isRequired,
   getStudent: PropTypes.func.isRequired,
   getZahlung: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
@@ -281,7 +304,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  createZahlung,
+  updateZahlung,
   getStudent,
   getZahlung,
-})(AddZahlung);
+})(UpdateZahlung);
