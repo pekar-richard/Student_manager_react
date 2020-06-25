@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from "./components/Layout/Header";
 import Dashboard from "./components/Dashboard";
-import StudentLektionDashboard from "./components/StudentLektionDashboard";
+import LektionDashboard from "./components/LektionDashboard";
 import AgenturDashboard from "./components/AgenturDashboard";
 import ZahlungDashboard from "./components/ZahlungDashboard";
 import AddStudent from "./components/Project/AddStudent";
@@ -49,10 +49,8 @@ class App extends Component {
 
           <Route
             exact
-            path="/StudentLektionDashboard/:studentIndex"
-            render={(props) => (
-              <StudentLektionDashboard {...props} isAuthed={true} />
-            )}
+            path="/LektionDashboard/:studentIndex"
+            render={(props) => <LektionDashboard {...props} isAuthed={true} />}
           />
 
           <Route

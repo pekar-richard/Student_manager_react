@@ -4,8 +4,30 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteStudent } from "../../actions/StudentActions";
 import "../../App.css";
+import { getAgenturs } from "../../actions/AgenturActions";
 
 class StudentItem extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      agenturs: [],
+      agenturKurzname: "",
+    };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    const { agenturs } = props.agentur;
+
+    return {
+      agenturs,
+    };
+  }
+
+  componentDidMount() {
+    this.props.getAgenturs();
+  }
+
   onDeleteClick = (id) => {
     this.props.deleteStudent(id);
   };
@@ -29,12 +51,20 @@ class StudentItem extends Component {
               <h3>{student.studentNachname}</h3>
               <p>{student.studentVorname}</p>
               <p>Kredit: {student.studentKredit} euro</p>
+              <p>
+                Agentur:{" "}
+                {this.state.agenturs.map(
+                  (agentur) =>
+                    student.agenturIndex === agentur.agenturIndex &&
+                    agentur.agenturKurzname
+                )}
+              </p>
             </div>
             <div className="col-md-4 d-none d-lg-block">
               <ul className="list-group">
                 <Link
                   className="linkButton"
-                  to={`/StudentLektionDashboard/${student.studentIndex}`}
+                  to={`/LektionDashboard/${student.studentIndex}`}
                 >
                   <li className="list-group-item board">
                     <i className="fa fa-flag-checkered pr-1"> Student Board </i>
@@ -65,6 +95,14 @@ class StudentItem extends Component {
 
 StudentItem.propTypes = {
   deleteStudent: PropTypes.func.isRequired,
+  getAgenturs: PropTypes.func.isRequired,
+  agentur: PropTypes.object.isRequired,
 };
 
-export default connect(null, { deleteStudent })(StudentItem);
+const mapStateToProps = (state) => ({
+  agentur: state.agentur,
+});
+
+export default connect(mapStateToProps, { deleteStudent, getAgenturs })(
+  StudentItem
+);

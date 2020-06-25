@@ -5,7 +5,7 @@ const ZahlungBackButton = ({ student_index }) => {
   return (
     <React.Fragment>
       <Link
-        to={`/StudentLektionDashboard/${student_index}`}
+        to={`/LektionDashboard/${student_index}`}
         className="btn btn-lg btn-info"
       >
         Back

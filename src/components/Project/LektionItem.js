@@ -6,21 +6,39 @@ import { deleteLektion } from "../../actions/LektionActions";
 import { formatDateTime, formatDateTimeLocal } from "../../tools";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../App.css";
+import { getAgenturs } from "../../actions/AgenturActions";
 
 class LektionItem extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    this.state = {};
+    this.state = {
+      agenturs: [],
+      agenturKurzname: "",
+    };
   }
 
   onDeleteClick = (id) => {
     this.props.deleteLektion(id);
   };
 
+  componentDidMount() {
+    this.props.getAgenturs();
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    const { agenturs } = props.agentur;
+    const { lektionIndex } = props;
+
+    return {
+      agenturs,
+    };
+  }
+
   render() {
     const { lektion } = this.props;
     const { increment } = this.props;
+    const { agenturs } = this.props.agentur;
 
     let currentTime = new Date().getTime();
     let lektionTime = new Date(lektion.lektionDatum).getTime();
@@ -41,7 +59,14 @@ class LektionItem extends Component {
 
               <p>
                 Dauer: {lektion.lektionMin} min. <br /> Preis:{" "}
-                {lektion.lektionPreis} euro <br />
+                {lektion.lektionPreis} euro <br /> Agentur:{" "}
+                {agenturs.map(
+                  (agentur) =>
+                    lektion.agenturIndex === agentur.agenturIndex &&
+                    agentur.agenturKurzname
+                )}
+                <br />
+                <br />
               </p>
             </div>
             <div className="col-md-4 d-none d-lg-block">
@@ -71,6 +96,14 @@ class LektionItem extends Component {
 
 LektionItem.propTypes = {
   deleteLektion: PropTypes.func.isRequired,
+  getAgenturs: PropTypes.func.isRequired,
+  agentur: PropTypes.object.isRequired,
 };
 
-export default connect(null, { deleteLektion })(LektionItem);
+const mapStateToProps = (state) => ({
+  agentur: state.agentur,
+});
+
+export default connect(mapStateToProps, { deleteLektion, getAgenturs })(
+  LektionItem
+);

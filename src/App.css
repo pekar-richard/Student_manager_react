@@ -113,10 +113,12 @@ img {
 
 .ZahlungBackButton {
   float: right;
-  position: absolute;
-  top: 149px;
-  left: 1036px;
+  margin-left: 20px;
 }
 
 .CreateZahlungButton {
+}
+
+.zahlungagentur-select {
+  margin: 10px;
 }

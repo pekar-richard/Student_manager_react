@@ -6,21 +6,33 @@ import LektionItem from "./Project/LektionItem";
 import CreateLektionButton from "./Project/CreateLektionButton";
 import ZahlungBoardButton from "./Project/ZahlungBoardButton";
 import { getStudent } from "../actions/StudentActions";
+
 import "../App.css";
 
-class StudentLektionDashboard extends Component {
-  constructor() {
-    super();
+class LektionDashboard extends Component {
+  debugger;
+  constructor(props) {
+    super(props);
 
     this.state = {
+      lektions: [],
+      student: [],
       studentIndex: "",
     };
   }
 
-  componentDidMount() {
-    this.props.getLektions();
+  static getDerivedStateFromProps(props, state) {
+    const { lektions } = props.lektion;
+    const { student } = props.student;
 
+    return {
+      lektions,
+      student,
+    };
+  }
+  componentDidMount() {
     const { studentIndex } = this.props.match.params;
+    this.props.getLektions();
     this.props.getStudent(studentIndex);
 
     this.setState({
@@ -54,6 +66,7 @@ class StudentLektionDashboard extends Component {
                 (lektion) =>
                   lektion.studentIndex == this.state.studentIndex && (
                     <LektionItem
+                      lektionIndex={lektion.lektionIndex}
                       key={lektion.lektionIndex}
                       lektion={lektion}
                       increment={i++}
@@ -68,8 +81,9 @@ class StudentLektionDashboard extends Component {
   }
 }
 
-StudentLektionDashboard.propTypes = {
+LektionDashboard.propTypes = {
   lektion: PropTypes.object.isRequired,
+  student: PropTypes.object.isRequired,
   getLektions: PropTypes.func.isRequired,
   getStudent: PropTypes.func.isRequired,
 };
@@ -77,8 +91,10 @@ StudentLektionDashboard.propTypes = {
 const mapStateToProps = (state) => ({
   lektion: state.lektion,
   student: state.student,
+  agentur: state.agentur,
 });
 
-export default connect(mapStateToProps, { getLektions, getStudent })(
-  StudentLektionDashboard
-);
+export default connect(mapStateToProps, {
+  getLektions,
+  getStudent,
+})(LektionDashboard);

@@ -6,7 +6,7 @@ export const createLektion = (lektion, student_index, history) => async (
 ) => {
   try {
     await axios.post("/api/lektion/", lektion);
-    history.push(`/StudentLektionDashboard/${student_index}`);
+    history.push(`/LektionDashboard/${student_index}`);
     dispatch({
       type: GET_ERRORS,
       payload: {},
@@ -24,7 +24,7 @@ export const updateLektion = (lektion, id, student_index, history) => async (
 ) => {
   try {
     const res = await axios.put(`/api/lektion/${id}`, lektion);
-    history.push(`/StudentLektionDashboard/${student_index}`);
+    history.push(`/LektionDashboard/${student_index}`);
     dispatch({
       type: GET_ERRORS,
       payload: {},

@@ -5,6 +5,7 @@ import {
   GET_ZAHLUNGS,
   DELETE_ZAHLUNG,
   GET_ZAHLUNGS_BYSTUDENTID,
+  GET_ZAHLUNGS_BYSTUDENTIDANDAGENTUR,
 } from "./types";
 
 export const createZahlung = (zahlung, student_index, history) => async (
@@ -71,6 +72,22 @@ export const getZahlungsByStudentID = (student_id, history) => async (
     const res = await axios.get(`/api/zahlung/student/${student_id}`);
     dispatch({
       type: GET_ZAHLUNGS_BYSTUDENTID,
+      payload: res.data,
+    });
+  } catch (error) {
+    history.push("/dashboard");
+  }
+};
+
+export const getZahlungsByStudentIDAndAgentur = (
+  student_id,
+  agentur_id,
+  history
+) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/zahlung/${student_id}/${agentur_id}`);
+    dispatch({
+      type: GET_ZAHLUNGS_BYSTUDENTIDANDAGENTUR,
       payload: res.data,
     });
   } catch (error) {

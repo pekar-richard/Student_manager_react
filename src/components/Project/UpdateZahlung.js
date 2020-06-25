@@ -27,6 +27,7 @@ class UpdateZahlung extends Component {
       createdAt: "",
       updatedAt: "",
       studentIndex: "",
+      agenturIndex: "",
       lektionIndex: null,
       errors: {},
     };
@@ -43,6 +44,7 @@ class UpdateZahlung extends Component {
 
     const {
       //Zahlung daten
+      agenturIndex,
       zahlungIndex,
       zahlungDatum,
       zahlungBetrag,
@@ -58,6 +60,7 @@ class UpdateZahlung extends Component {
     } = nextProps.zahlung.zahlung;
 
     this.setState({
+      agenturIndex,
       zahlungIndex,
       zahlungDatum,
       zahlungBetrag,
@@ -89,6 +92,7 @@ class UpdateZahlung extends Component {
       updatedAt: this.state.updatedAt,
       studentIndex: this.state.studentIndex,
       lektionIndex: this.state.lektionIndex,
+      agenturIndex: this.state.agenturIndex,
     };
 
     if (this.zahlungRechnungCheck(this.state.zahlungRgnr) != false) {
