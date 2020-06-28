@@ -108,6 +108,13 @@ img {
   left: 205px;
 }
 
+.RechnungBoardButton {
+  float: right;
+  position: absolute;
+  top: 122px;
+  left: 383px;
+}
+
 .CreateLektionButton {
 }
 
@@ -117,6 +124,9 @@ img {
 }
 
 .CreateZahlungButton {
+}
+
+.CreateRechnungButton {
 }
 
 .zahlungagentur-select {

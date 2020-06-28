@@ -6,7 +6,6 @@ import LektionItem from "./Project/LektionItem";
 import CreateLektionButton from "./Project/CreateLektionButton";
 import ZahlungBoardButton from "./Project/ZahlungBoardButton";
 import { getStudent } from "../actions/StudentActions";
-
 import "../App.css";
 
 class LektionDashboard extends Component {

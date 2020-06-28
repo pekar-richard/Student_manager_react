@@ -5,6 +5,7 @@ import { getStudents } from "../actions/StudentActions";
 import StudentItem from "./Project/StudentItem";
 import CreateStudentButton from "./Project/CreateStudentButton";
 import AgenturBoardButton from "./Project/AgenturBoardButton";
+import RechnungBoardButton from "./Project/RechnungBoardButton";
 import "../App.css";
 
 class Dashboard extends Component {
@@ -28,6 +29,9 @@ class Dashboard extends Component {
               </div>
               <div className="AgenturBoardButton">
                 <AgenturBoardButton />
+              </div>
+              <div className="RechnungBoardButton">
+                <RechnungBoardButton />
               </div>
               <hr />
               {students.map((student) => (

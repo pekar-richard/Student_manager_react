@@ -4,6 +4,7 @@ import studentReducer from "./studentReducer";
 import agenturReducer from "./agenturReducer";
 import lektionReducer from "./lektionReducer";
 import zahlungReducer from "./zahlungReducer";
+import rechnungReducer from "./rechnungReducer";
 
 export default combineReducers({
   errors: errorReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   agentur: agenturReducer,
   lektion: lektionReducer,
   zahlung: zahlungReducer,
+  rechnung: rechnungReducer,
 });
