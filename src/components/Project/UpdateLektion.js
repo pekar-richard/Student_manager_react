@@ -190,6 +190,7 @@ class UpdateLektion extends Component {
                   der Schüler {this.state.studentSortierung} Lektion
                   aktualisieren
                 </h3>
+                <br />
                 <hr />
                 <form onSubmit={this.onSubmit}>
                   <h6>Lektion Datum</h6>

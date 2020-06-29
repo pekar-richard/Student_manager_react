@@ -42,7 +42,7 @@ class ZahlungItem extends Component {
                     to={`/updateZahlung/${zahlung.zahlungIndex}/${student_index}`}
                   >
                     <li className="list-group-item update">
-                      <i className="fa fa-edit pr-1"> Update Zahlung</i>
+                      <i className="fa fa-edit pr-1"> Update</i>
                     </li>
                   </Link>
                   <li
@@ -52,7 +52,7 @@ class ZahlungItem extends Component {
                       zahlung.zahlungIndex
                     )}
                   >
-                    <i className="fa fa-minus-circle pr-1"> Delete Zahlung</i>
+                    <i className="fa fa-minus-circle pr-1"> Delete</i>
                   </li>
                 </ul>
               </div>

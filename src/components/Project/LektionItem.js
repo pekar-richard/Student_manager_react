@@ -76,14 +76,14 @@ class LektionItem extends Component {
                   to={`/updateLektion/${lektion.lektionIndex}/${lektion.studentIndex}`}
                 >
                   <li className="list-group-item update">
-                    <i className="fa fa-edit pr-1"> Update Lektion</i>
+                    <i className="fa fa-edit pr-1"> Update</i>
                   </li>
                 </Link>
                 <li
                   className="list-group-item delete"
                   onClick={this.onDeleteClick.bind(this, lektion.lektionIndex)}
                 >
-                  <i className="fa fa-minus-circle pr-1"> Delete Lektion</i>
+                  <i className="fa fa-minus-circle pr-1"> Delete</i>
                 </li>
               </ul>
             </div>

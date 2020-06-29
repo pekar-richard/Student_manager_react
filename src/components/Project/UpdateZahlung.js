@@ -157,6 +157,7 @@ class UpdateZahlung extends Component {
                 <h3 className="display-4 text-center">
                   Create Zahlung für den Student {student.studentSortierung}
                 </h3>
+                <br />
                 <hr />
                 <form onSubmit={this.onSubmit}>
                   <h6>Zahlung Datum</h6>
@@ -177,7 +178,7 @@ class UpdateZahlung extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.zahlungBetrag,
                       })}
-                      placeholder="Zahlung Betrag"
+                      placeholder="Betrag"
                       name="zahlungBetrag"
                       value={this.state.zahlungBetrag}
                       onChange={this.onChange}
@@ -195,7 +196,7 @@ class UpdateZahlung extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.zahlungKonto,
                       })}
-                      placeholder="Zahlung Konto"
+                      placeholder="Konto"
                       name="zahlungKonto"
                       value={this.state.zahlungKonto}
                       onChange={this.onChange}
@@ -228,7 +229,7 @@ class UpdateZahlung extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.zahlungRgnr,
                       })}
-                      placeholder="Zahlung RGNR"
+                      placeholder="RGNR"
                       name="zahlungRgnr"
                       value={this.state.zahlungRgnr}
                       onChange={this.onChange}
@@ -252,7 +253,7 @@ class UpdateZahlung extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.zahlungKomm,
                       })}
-                      placeholder="Zahlung Kommentar"
+                      placeholder="Kommentar"
                       name="zahlungKomm"
                       value={this.state.zahlungKomm}
                       onChange={this.onChange}

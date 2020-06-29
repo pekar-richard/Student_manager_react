@@ -31,14 +31,14 @@ class AgenturItem extends Component {
                   to={`/updateAgentur/${agentur.agenturIndex}`}
                 >
                   <li className="list-group-item update">
-                    <i className="fa fa-edit pr-1"> Update Agentur</i>
+                    <i className="fa fa-edit pr-1"> Update</i>
                   </li>
                 </Link>
                 <li
                   className="list-group-item delete"
                   onClick={this.onDeleteClick.bind(this, agentur.agenturIndex)}
                 >
-                  <i className="fa fa-minus-circle pr-1"> Delete Agentur</i>
+                  <i className="fa fa-minus-circle pr-1"> Delete</i>
                 </li>
               </ul>
             </div>

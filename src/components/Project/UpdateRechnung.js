@@ -1,19 +1,20 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { createRechnung } from "../../actions/RechnungActions";
+import { updateRechnung, getRechnung } from "../../actions/RechnungActions";
 import classnames from "classnames";
 import { getAgenturs } from "../../actions/AgenturActions";
 import { getStudents } from "../../actions/StudentActions";
 
-class AddRechnung extends Component {
-  constructor() {
-    super();
+class UpdateRechnung extends Component {
+  constructor(props) {
+    super(props);
 
     this.state = {
       studentundagenturnull: false,
       studentundagentursindnullmessage:
         "Sie müssen mindestens ein Student oder eine Agentur wählen!",
+      rechnIndex: "",
       rechnTyp: "",
       rechnName: "",
       rechnZusatz: "",
@@ -34,9 +35,16 @@ class AddRechnung extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   onSubmit(e) {
     e.preventDefault();
-    const newRechnung = {
+    const updateRechnung = {
+      rechnIndex: this.state.rechnIndex,
       rechnTyp: this.state.rechnTyp,
       rechnName: this.state.rechnName,
       rechnZusatz: this.state.rechnZusatz,
@@ -53,7 +61,11 @@ class AddRechnung extends Component {
     };
 
     if (this.checkStudentundAgentur() === true) {
-      this.props.createRechnung(newRechnung, this.props.history);
+      this.props.updateRechnung(
+        updateRechnung,
+        this.state.rechnIndex,
+        this.props.history
+      );
     }
   }
 
@@ -75,20 +87,57 @@ class AddRechnung extends Component {
     }
   }
 
-  //life cycle hooks
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
-  }
-
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
   componentDidMount() {
+    const { rechnungIndex } = this.props.match.params;
+    this.props.getRechnung(rechnungIndex, this.props.history);
     this.props.getAgenturs(this.props.history);
     this.props.getStudents(this.props.history);
+
+    this.setState({
+      rechnIndex: rechnungIndex,
+    });
+  }
+
+  componentDidUpdate(previousProps, previousState) {
+    if (previousProps.rechnung.rechnung !== this.props.rechnung.rechnung) {
+      const {
+        rechnIndex,
+        rechnTyp,
+        rechnName,
+        rechnZusatz,
+        rechnStr,
+        rechnPlz,
+        rechnOrt,
+        rechnLand,
+        rechnIco,
+        rechnDic,
+        createdAt,
+        updatedAt,
+        agenturIndex,
+        studentIndex,
+      } = this.props.rechnung.rechnung;
+
+      this.setState({
+        rechnIndex,
+        rechnTyp,
+        rechnName,
+        rechnZusatz,
+        rechnStr,
+        rechnPlz,
+        rechnOrt,
+        rechnLand,
+        rechnIco,
+        rechnDic,
+        createdAt,
+        updatedAt,
+        agenturIndex,
+        studentIndex,
+      });
+    }
   }
 
   render() {
@@ -102,7 +151,7 @@ class AddRechnung extends Component {
             <div className="row">
               <div className="col-md-8 m-auto">
                 <h5 className="display-4 text-center">
-                  Create Rechnung Formular
+                  Update Rechnung Formular
                 </h5>
                 <br />
                 <hr />
@@ -311,21 +360,27 @@ class AddRechnung extends Component {
   }
 }
 
-AddRechnung.propTypes = {
-  createRechnung: PropTypes.func.isRequired,
+UpdateRechnung.propTypes = {
+  updateRechnung: PropTypes.func.isRequired,
   getAgenturs: PropTypes.func.isRequired,
   getStudents: PropTypes.func.isRequired,
+  getRechnung: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
+  agentur: PropTypes.object.isRequired,
+  student: PropTypes.object.isRequired,
+  rechnung: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   errors: state.errors,
   agentur: state.agentur,
   student: state.student,
+  rechnung: state.rechnung,
 });
 
 export default connect(mapStateToProps, {
-  createRechnung,
+  updateRechnung,
   getAgenturs,
   getStudents,
-})(AddRechnung);
+  getRechnung,
+})(UpdateRechnung);

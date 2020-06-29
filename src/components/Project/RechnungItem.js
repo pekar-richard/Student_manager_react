@@ -20,9 +20,7 @@ class RechnungItem extends Component {
               <span className="mx-auto">{increment}</span>
             </div>
             <div className="col-lg-6 col-md-4 col-8">
-              <h3></h3>
-              <p></p>
-              <p></p>
+              <h5>{rechnung.rechnName}</h5>
             </div>
             <div className="col-md-4 d-none d-lg-block">
               <ul className="list-group">
@@ -31,14 +29,14 @@ class RechnungItem extends Component {
                   to={`/updateRechnung/${rechnung.rechnIndex}`}
                 >
                   <li className="list-group-item update">
-                    <i className="fa fa-edit pr-1"> Update Rechnung</i>
+                    <i className="fa fa-edit pr-1"> Update</i>
                   </li>
                 </Link>
                 <li
                   className="list-group-item delete"
                   onClick={this.onDeleteClick.bind(this, rechnung.rechnIndex)}
                 >
-                  <i className="fa fa-minus-circle pr-1"> Delete Rechnung</i>
+                  <i className="fa fa-minus-circle pr-1"> Delete</i>
                 </li>
               </ul>
             </div>

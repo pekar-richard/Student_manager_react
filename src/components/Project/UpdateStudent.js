@@ -136,6 +136,7 @@ class UpdateStudent extends Component {
                 <h5 className="display-4 text-center">
                   der Schüler {this.state.studentSortierung} aktualisieren
                 </h5>
+                <br />
                 <hr />
                 <form onSubmit={this.onSubmit}>
                   <div className="form-group">
@@ -144,7 +145,7 @@ class UpdateStudent extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.studentNachname,
                       })}
-                      placeholder="Student Nachname"
+                      placeholder="Nachname"
                       name="studentNachname"
                       value={this.state.studentNachname}
                       onChange={this.onChange}
@@ -162,7 +163,7 @@ class UpdateStudent extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.studentVorname,
                       })}
-                      placeholder="Student Vorname"
+                      placeholder="Vorname"
                       name="studentVorname"
                       value={this.state.studentVorname}
                       onChange={this.onChange}
@@ -182,7 +183,7 @@ class UpdateStudent extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.studentPreis45,
                       })}
-                      placeholder="Student Preis 45"
+                      placeholder="Preis 45 min."
                       name="studentPreis45"
                       value={this.state.studentPreis45}
                       onChange={this.onChange}
@@ -202,7 +203,7 @@ class UpdateStudent extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.studentPreis60,
                       })}
-                      placeholder="Student Preis 60"
+                      placeholder="Preis 60 min."
                       name="studentPreis60"
                       value={this.state.studentPreis60}
                       onChange={this.onChange}
@@ -222,7 +223,7 @@ class UpdateStudent extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.studentPreis90,
                       })}
-                      placeholder="Student Preis 90"
+                      placeholder="Preis 90 min."
                       name="studentPreis90"
                       value={this.state.studentPreis90}
                       onChange={this.onChange}
@@ -242,7 +243,7 @@ class UpdateStudent extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.studentPreis120,
                       })}
-                      placeholder="Student Preis 120"
+                      placeholder="Preis 120 min."
                       name="studentPreis120"
                       value={this.state.studentPreis120}
                       onChange={this.onChange}
@@ -271,7 +272,7 @@ class UpdateStudent extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.studentQuelle,
                       })}
-                      placeholder="Student Quelle"
+                      placeholder="Quelle"
                       name="studentQuelle"
                       value={this.state.studentQuelle}
                       onChange={this.onChange}
@@ -289,7 +290,7 @@ class UpdateStudent extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.studentKomm,
                       })}
-                      placeholder="Student Komentar"
+                      placeholder="Komentar"
                       name="studentKomm"
                       value={this.state.studentKomm}
                       onChange={this.onChange}

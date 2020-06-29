@@ -54,6 +54,7 @@ class AddAgentur extends Component {
                 <h5 className="display-4 text-center">
                   Create Agentur Formular
                 </h5>
+                <br />
                 <hr />
                 <form onSubmit={this.onSubmit}>
                   <div className="form-group">
@@ -62,7 +63,7 @@ class AddAgentur extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.agenturKurzname,
                       })}
-                      placeholder="Agentur Kurzname"
+                      placeholder="Kurzname"
                       name="agenturKurzname"
                       value={this.state.agenturKurzname}
                       onChange={this.onChange}
@@ -80,7 +81,7 @@ class AddAgentur extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.agenturKomm,
                       })}
-                      placeholder="Agentur Kommentar"
+                      placeholder="Kommentar"
                       name="agenturKomm"
                       value={this.state.agenturKomm}
                       onChange={this.onChange}

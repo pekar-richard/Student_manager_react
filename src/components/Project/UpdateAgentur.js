@@ -78,6 +78,7 @@ class UpdateAgentur extends Component {
                 <h5 className="display-4 text-center">
                   die Agentur {this.props.agentur.agenturKurzname} aktualisieren
                 </h5>
+                <br />
                 <hr />
                 <form onSubmit={this.onSubmit}>
                   <div className="form-group">
@@ -86,7 +87,7 @@ class UpdateAgentur extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.agenturKurzname,
                       })}
-                      placeholder="Agentur Kurzname"
+                      placeholder="Kurzname"
                       name="agenturKurzname"
                       value={this.state.agenturKurzname}
                       onChange={this.onChange}
@@ -104,7 +105,7 @@ class UpdateAgentur extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.agenturKomm,
                       })}
-                      placeholder="Agentur Kommentar"
+                      placeholder="Kommentar"
                       name="agenturKomm"
                       value={this.state.agenturKomm}
                       onChange={this.onChange}

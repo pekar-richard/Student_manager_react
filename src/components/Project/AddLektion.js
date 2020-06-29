@@ -161,6 +161,7 @@ class AddLektion extends Component {
                 <h3 className="display-4 text-center">
                   Create Lektion für den Student {student.studentSortierung}
                 </h3>
+                <br />
                 <hr />
                 <form onSubmit={this.onSubmit}>
                   <h6>Lektion Datum</h6>

@@ -9,7 +9,7 @@ import {
 export const createRechnung = (rechnung, history) => async (dispatch) => {
   try {
     await axios.post("/api/rechnung/", rechnung);
-    history.push("/dashboard");
+    history.push("/RechnungDashboard");
     dispatch({
       type: GET_ERRORS,
       payload: {},
@@ -25,7 +25,7 @@ export const createRechnung = (rechnung, history) => async (dispatch) => {
 export const updateRechnung = (rechnung, id, history) => async (dispatch) => {
   try {
     const res = await axios.put(`/api/rechnung/${id}`, rechnung);
-    history.push("/dashboard");
+    history.push("/RechnungDashboard");
     dispatch({
       type: GET_ERRORS,
       payload: {},
@@ -40,7 +40,6 @@ export const updateRechnung = (rechnung, id, history) => async (dispatch) => {
 
 export const getRechnungs = () => async (dispatch) => {
   const res = await axios.get(`/api/rechnung/allrechnungs`);
-
   dispatch({
     type: GET_RECHNUNGS,
     payload: res.data,
@@ -50,6 +49,7 @@ export const getRechnungs = () => async (dispatch) => {
 export const getRechnung = (id, history) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/rechnung/${id}`);
+
     dispatch({
       type: GET_RECHNUNG,
       payload: res.data,

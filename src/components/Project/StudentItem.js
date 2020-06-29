@@ -67,7 +67,7 @@ class StudentItem extends Component {
                   to={`/LektionDashboard/${student.studentIndex}`}
                 >
                   <li className="list-group-item board">
-                    <i className="fa fa-flag-checkered pr-1"> Student Board </i>
+                    <i className="fa fa-flag-checkered pr-1"> Lektion Board </i>
                   </li>
                 </Link>
                 <Link
@@ -75,14 +75,14 @@ class StudentItem extends Component {
                   to={`/updateStudent/${student.studentIndex}`}
                 >
                   <li className="list-group-item update">
-                    <i className="fa fa-edit pr-1"> Update Student</i>
+                    <i className="fa fa-edit pr-1"> Update</i>
                   </li>
                 </Link>
                 <li
                   className="list-group-item delete"
                   onClick={this.onDeleteClick.bind(this, student.studentIndex)}
                 >
-                  <i className="fa fa-minus-circle pr-1"> Delete Student</i>
+                  <i className="fa fa-minus-circle pr-1"> Delete</i>
                 </li>
               </ul>
             </div>

@@ -24,14 +24,17 @@ class Dashboard extends Component {
               <br />
               <h1 className="display-4 text-center">Alle Studenten</h1>
               <br />
-              <div className="CreateStudentButton">
-                <CreateStudentButton />
-              </div>
-              <div className="AgenturBoardButton">
-                <AgenturBoardButton />
-              </div>
-              <div className="RechnungBoardButton">
-                <RechnungBoardButton />
+              <br />
+              <div>
+                <div className="CreateStudentButton">
+                  <CreateStudentButton />
+                </div>
+                <div className="AgenturBoardButton">
+                  <AgenturBoardButton />
+                </div>
+                <div className="RechnungBoardButton">
+                  <RechnungBoardButton />
+                </div>
               </div>
               <hr />
               {students.map((student) => (
