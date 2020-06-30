@@ -7,6 +7,7 @@ import { formatDateTime, formatDateTimeLocal } from "../../tools";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../App.css";
 import { getAgenturs } from "../../actions/AgenturActions";
+import { Example } from "./Example";
 
 class LektionItem extends Component {
   constructor(props) {
@@ -79,12 +80,18 @@ class LektionItem extends Component {
                     <i className="fa fa-edit pr-1"> Update</i>
                   </li>
                 </Link>
-                <li
-                  className="list-group-item delete"
-                  onClick={this.onDeleteClick.bind(this, lektion.lektionIndex)}
-                >
-                  <i className="fa fa-minus-circle pr-1"> Delete</i>
-                </li>
+                <Example
+                  deleteitem={this.onDeleteClick.bind(
+                    this,
+                    lektion.lektionIndex
+                  )}
+                  modalheading={`Delete Lektion: ${formatDateTime(
+                    lektion.lektionDatum
+                  )}`}
+                  message={
+                    "Bist du sicher? Dadurch werden die Lektion und alle damit verbundenen Daten gelöscht!"
+                  }
+                />
               </ul>
             </div>
           </div>

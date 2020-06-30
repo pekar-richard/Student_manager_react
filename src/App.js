@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from "./components/Layout/Header";
 import Dashboard from "./components/Dashboard";

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteRechnung } from "../../actions/RechnungActions";
 import "../../App.css";
+import { Example } from "./Example";
 
 class RechnungItem extends Component {
   onDeleteClick = (id) => {
@@ -32,12 +33,17 @@ class RechnungItem extends Component {
                     <i className="fa fa-edit pr-1"> Update</i>
                   </li>
                 </Link>
-                <li
-                  className="list-group-item delete"
-                  onClick={this.onDeleteClick.bind(this, rechnung.rechnIndex)}
-                >
-                  <i className="fa fa-minus-circle pr-1"> Delete</i>
-                </li>
+
+                <Example
+                  deleteitem={this.onDeleteClick.bind(
+                    this,
+                    rechnung.rechnIndex
+                  )}
+                  modalheading={`Delete Rechnung: ${rechnung.rechnName}`}
+                  message={
+                    "Bist du sicher? Dadurch werden die Rechnung und alle damit verbundenen Daten gelöscht!"
+                  }
+                />
               </ul>
             </div>
           </div>

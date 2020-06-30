@@ -60,15 +60,9 @@ export const getRechnung = (id, history) => async (dispatch) => {
 };
 
 export const deleteRechnung = (id) => async (dispatch) => {
-  if (
-    window.confirm(
-      "Bist du sicher? Dadurch werden die Rechnung und alle damit verbundenen Daten gelöscht!"
-    )
-  ) {
-    await axios.delete(`/api/rechnung/${id}`);
-    dispatch({
-      type: DELETE_RECHNUNG,
-      payload: id,
-    });
-  }
+  await axios.delete(`/api/rechnung/${id}`);
+  dispatch({
+    type: DELETE_RECHNUNG,
+    payload: id,
+  });
 };

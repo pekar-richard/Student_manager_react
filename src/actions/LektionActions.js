@@ -60,15 +60,9 @@ export const getLektion = (id, history) => async (dispatch) => {
 };
 
 export const deleteLektion = (id) => async (dispatch) => {
-  if (
-    window.confirm(
-      "Bist du sicher? Dadurch werden die Lektion und alle damit verbundenen Daten gelöscht!"
-    )
-  ) {
-    await axios.delete(`/api/lektion/${id}`);
-    dispatch({
-      type: DELETE_LEKTION,
-      payload: id,
-    });
-  }
+  await axios.delete(`/api/lektion/${id}`);
+  dispatch({
+    type: DELETE_LEKTION,
+    payload: id,
+  });
 };

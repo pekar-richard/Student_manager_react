@@ -96,15 +96,9 @@ export const getZahlungsByStudentIDAndAgentur = (
 };
 
 export const deleteZahlung = (id) => async (dispatch) => {
-  if (
-    window.confirm(
-      "Bist du sicher? Dadurch werden die Zahlung und alle damit verbundenen Daten gelöscht!"
-    )
-  ) {
-    await axios.delete(`/api/zahlung/${id}`);
-    dispatch({
-      type: DELETE_ZAHLUNG,
-      payload: id,
-    });
-  }
+  await axios.delete(`/api/zahlung/${id}`);
+  dispatch({
+    type: DELETE_ZAHLUNG,
+    payload: id,
+  });
 };

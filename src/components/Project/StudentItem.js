@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteStudent } from "../../actions/StudentActions";
+import { Example } from "./Example";
 import "../../App.css";
 import { getAgenturs } from "../../actions/AgenturActions";
 
@@ -31,9 +32,11 @@ class StudentItem extends Component {
   onDeleteClick = (id) => {
     this.props.deleteStudent(id);
   };
+
   render() {
     const { student } = this.props;
     const { increment } = this.props;
+
     return (
       <div className="container">
         <div
@@ -78,12 +81,16 @@ class StudentItem extends Component {
                     <i className="fa fa-edit pr-1"> Update</i>
                   </li>
                 </Link>
-                <li
-                  className="list-group-item delete"
-                  onClick={this.onDeleteClick.bind(this, student.studentIndex)}
-                >
-                  <i className="fa fa-minus-circle pr-1"> Delete</i>
-                </li>
+                <Example
+                  deleteitem={this.onDeleteClick.bind(
+                    this,
+                    student.studentIndex
+                  )}
+                  modalheading={`Delete Student: ${student.studentSortierung}`}
+                  message={
+                    "Bist du sicher? Dadurch werden der Student und alle damit verbundenen Daten gelöscht!"
+                  }
+                />
               </ul>
             </div>
           </div>

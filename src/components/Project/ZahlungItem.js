@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { deleteZahlung } from "../../actions/ZahlungActions";
 import { formatDateTime } from "../../tools";
 import "../../App.css";
+import { Example } from "./Example";
 
 class ZahlungItem extends Component {
   onDeleteClick = (id) => {
@@ -45,15 +46,18 @@ class ZahlungItem extends Component {
                       <i className="fa fa-edit pr-1"> Update</i>
                     </li>
                   </Link>
-                  <li
-                    className="list-group-item delete"
-                    onClick={this.onDeleteClick.bind(
+                  <Example
+                    deleteitem={this.onDeleteClick.bind(
                       this,
                       zahlung.zahlungIndex
                     )}
-                  >
-                    <i className="fa fa-minus-circle pr-1"> Delete</i>
-                  </li>
+                    modalheading={`Delete Zahlung: ${formatDateTime(
+                      zahlung.zahlungDatum
+                    )}`}
+                    message={
+                      "Bist du sicher? Dadurch werden die Zahlung und alle damit verbundenen Daten gelöscht!"
+                    }
+                  />
                 </ul>
               </div>
             )}

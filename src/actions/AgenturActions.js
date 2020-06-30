@@ -54,15 +54,9 @@ export const getAgentur = (id, history) => async (dispatch) => {
 };
 
 export const deleteAgentur = (id) => async (dispatch) => {
-  if (
-    window.confirm(
-      "Bist du sicher? Dadurch werden die Agentur und alle damit verbundenen Daten gelöscht!"
-    )
-  ) {
-    await axios.delete(`/api/agentur/${id}`);
-    dispatch({
-      type: DELETE_AGENTUR,
-      payload: id,
-    });
-  }
+  await axios.delete(`/api/agentur/${id}`);
+  dispatch({
+    type: DELETE_AGENTUR,
+    payload: id,
+  });
 };

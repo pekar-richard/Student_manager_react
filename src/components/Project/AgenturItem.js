@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteAgentur } from "../../actions/AgenturActions";
 import "../../App.css";
+import { Example } from "./Example";
 
 class AgenturItem extends Component {
   onDeleteClick = (id) => {
@@ -34,12 +35,16 @@ class AgenturItem extends Component {
                     <i className="fa fa-edit pr-1"> Update</i>
                   </li>
                 </Link>
-                <li
-                  className="list-group-item delete"
-                  onClick={this.onDeleteClick.bind(this, agentur.agenturIndex)}
-                >
-                  <i className="fa fa-minus-circle pr-1"> Delete</i>
-                </li>
+                <Example
+                  deleteitem={this.onDeleteClick.bind(
+                    this,
+                    agentur.agenturIndex
+                  )}
+                  modalheading={`Delete Agentur: ${agentur.agenturKurzname}`}
+                  message={
+                    "Bist du sicher? Dadurch werden die Agentur und alle damit verbundenen Daten gelöscht!"
+                  }
+                />
               </ul>
             </div>
           </div>

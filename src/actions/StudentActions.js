@@ -55,15 +55,9 @@ export const getStudent = (id, history) => async (dispatch) => {
 };
 
 export const deleteStudent = (id) => async (dispatch) => {
-  if (
-    window.confirm(
-      "Bist du sicher? Dadurch werden der Student und alle damit verbundenen Daten gelöscht!"
-    )
-  ) {
-    await axios.delete(`/api/student/${id}`);
-    dispatch({
-      type: DELETE_STUDENT,
-      payload: id,
-    });
-  }
+  await axios.delete(`/api/student/${id}`);
+  dispatch({
+    type: DELETE_STUDENT,
+    payload: id,
+  });
 };
