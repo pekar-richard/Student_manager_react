@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ZahlungBoardButton = ({ studentIndex }) => {
-  //debugger;
   return (
     <React.Fragment>
       <Link

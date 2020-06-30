@@ -13,19 +13,29 @@ import AddStudent from "./components/Project/AddStudent";
 import AddLektion from "./components/Project/AddLektion";
 import AddAgentur from "./components/Project/AddAgentur";
 import AddZahlung from "./components/Project/AddZahlung";
+import Login from "./components/Project/Login";
 import AddRechnung from "./components/Project/AddRechnung";
 import UpdateStudent from "./components/Project/UpdateStudent";
 import UpdateLektion from "./components/Project/UpdateLektion";
 import UpdateAgentur from "./components/Project/UpdateAgentur";
 import UpdateZahlung from "./components/Project/UpdateZahlung";
 import UpdateRechnung from "./components/Project/UpdateRechnung";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { getAusloggen } from "./actions/LoginActions";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
+    console.log(this.props.login.logout);
     return (
       <Router>
         <div className="App">
-          <Header />
+          {this.props.login.logout === "" && <Header />}
 
           <Route
             exact
@@ -116,9 +126,26 @@ class App extends Component {
             path="/RechnungDashboard/"
             render={(props) => <RechnungDashboard {...props} isAuthed={true} />}
           />
+          <Route
+            exact
+            path="/Login"
+            render={(props) => <Login {...props} isAuthed={true} />}
+          />
         </div>
       </Router>
     );
   }
 }
-export default App;
+
+App.propTypes = {
+  getAusloggen: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  errors: state.errors,
+  login: state.login,
+});
+
+export default connect(mapStateToProps, {
+  getAusloggen,
+})(App);

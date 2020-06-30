@@ -95,7 +95,7 @@ class UpdateZahlung extends Component {
       agenturIndex: this.state.agenturIndex,
     };
 
-    if (this.zahlungRechnungCheck(this.state.zahlungRgnr) != false) {
+    if (this.zahlungRechnungCheck(this.state.zahlungRgnr) !== false) {
       this.props.updateZahlung(
         newZahlung,
         this.state.zahlungIndex,

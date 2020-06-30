@@ -132,3 +132,12 @@ img {
 .zahlungagentur-select {
   margin: 10px;
 }
+
+.login-box {
+  left: 35%;
+  top: 35%;
+  right: 35%;
+  bottom: 35%;
+  position: absolute;
+  text-align: center;
+}

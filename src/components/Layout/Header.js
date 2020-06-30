@@ -1,6 +1,19 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { getAusloggen } from "../../actions/LoginActions";
+import { withRouter } from "react-router-dom";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  getAusloggen() {
+    this.props.getAusloggen(this.props.history);
+  }
+
   render() {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
@@ -25,19 +38,28 @@ class Header extends Component {
                 </a>
               </li>
             </ul>
-
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <a className="nav-link" href="login.html">
-                  Ausloggen
-                </a>
-              </li>
-            </ul>
           </div>
+          <button
+            className="btn btn-lg btn-warning"
+            onClick={this.getAusloggen.bind(this)}
+          >
+            ausloggen
+          </button>
         </div>
       </nav>
     );
   }
 }
 
-export default Header;
+Header.propTypes = {
+  getAusloggen: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  errors: state.errors,
+  logout: state.logout,
+});
+
+export default connect(mapStateToProps, {
+  getAusloggen,
+})(withRouter(Header));

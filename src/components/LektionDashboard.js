@@ -9,7 +9,6 @@ import { getStudent } from "../actions/StudentActions";
 import "../App.css";
 
 class LektionDashboard extends Component {
-  debugger;
   constructor(props) {
     super(props);
 

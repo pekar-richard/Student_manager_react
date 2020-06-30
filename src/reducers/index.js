@@ -5,9 +5,11 @@ import agenturReducer from "./agenturReducer";
 import lektionReducer from "./lektionReducer";
 import zahlungReducer from "./zahlungReducer";
 import rechnungReducer from "./rechnungReducer";
+import loginReducer from "./loginReducer";
 
 export default combineReducers({
   errors: errorReducer,
+  login: loginReducer,
   student: studentReducer,
   agentur: agenturReducer,
   lektion: lektionReducer,
