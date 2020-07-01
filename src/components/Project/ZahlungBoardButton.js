@@ -8,7 +8,7 @@ const ZahlungBoardButton = ({ studentIndex }) => {
         to={`/ZahlungDashboard/${studentIndex}`}
         className="btn btn-lg btn-info"
       >
-        Zahlung Board
+        Zahlungen
       </Link>
     </React.Fragment>
   );

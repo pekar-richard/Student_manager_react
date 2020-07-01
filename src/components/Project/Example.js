@@ -19,7 +19,7 @@ function Example({ deleteitem, modalheading, message }) {
   return (
     <div>
       <li className="list-group-item delete" onClick={handleShow}>
-        <i className="fa fa-minus-circle pr-1"> Delete</i>
+        <i className="fa fa-minus-circle pr-1"> Löschen</i>
       </li>
 
       <Modal show={show} onHide={handleClose}>
@@ -29,10 +29,10 @@ function Example({ deleteitem, modalheading, message }) {
         <Modal.Body>{message}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Abbrechen
           </Button>
           <Button variant="primary" onClick={(handleClose, deleteitem)}>
-            OK
+            Löschen
           </Button>
         </Modal.Footer>
       </Modal>

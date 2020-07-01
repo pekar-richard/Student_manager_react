@@ -5,7 +5,7 @@ const CreateLektionButton = ({ studentIndex }) => {
   return (
     <React.Fragment>
       <Link to={`/addLektion/${studentIndex}`} className="btn btn-lg btn-info">
-        Create a Lektion
+        Neue Lektion
       </Link>
     </React.Fragment>
   );

@@ -87,9 +87,7 @@ class AddStudent extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-8 m-auto">
-                <h5 className="display-4 text-center">
-                  Create Student Formular
-                </h5>
+                <h5 className="display-4 text-center">Student anlegen</h5>
                 <br />
                 <hr />
                 <form onSubmit={this.onSubmit}>
@@ -209,7 +207,7 @@ class AddStudent extends Component {
                     )}
                   </div>
 
-                  <h6>Geburst Datum</h6>
+                  <h6>Geburtsdatum</h6>
                   <div className="form-group">
                     <input
                       type="date"
@@ -244,7 +242,7 @@ class AddStudent extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.studentKomm,
                       })}
-                      placeholder="Komentar"
+                      placeholder="Kommentar"
                       name="studentKomm"
                       value={this.state.studentKomm}
                       onChange={this.onChange}
@@ -263,7 +261,7 @@ class AddStudent extends Component {
                       value={this.state.studentAbrechnung}
                       onChange={this.onChange}
                     >
-                      <option value={0}>Select Abrechnung</option>
+                      <option value={0}>Abrechnung</option>
                       <option value={1}>Bar</option>
                       <option value={2}>Kredit</option>
                       <option value={3}>Rehnung</option>
@@ -277,7 +275,7 @@ class AddStudent extends Component {
                       value={this.state.studentAktiv}
                       onChange={this.onChange}
                     >
-                      <option value={0}>Select Status</option>
+                      <option value={0}>Status</option>
                       <option value={1}>aktiv</option>
                       <option value={2}>nicht aktiv</option>
                     </select>
@@ -290,7 +288,7 @@ class AddStudent extends Component {
                       value={this.state.agenturIndex}
                       onChange={this.onChange}
                     >
-                      <option value="">Select Agentur</option>
+                      <option value="">Agentur</option>
                       {agenturs.map((agentur) => (
                         <option
                           key={agentur.agenturIndex}
@@ -304,6 +302,7 @@ class AddStudent extends Component {
 
                   <input
                     type="submit"
+                    value="Speichern"
                     className="btn btn-primary btn-block mt-4"
                   />
                 </form>

@@ -6,7 +6,7 @@ import { updateLektion } from "../../actions/LektionActions";
 import { getLektion } from "../../actions/LektionActions";
 import { getStudent } from "../../actions/StudentActions";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { formatDateTimeLocal, formatDateLocal } from "../../tools";
+import { formatDateTimeLocal, formatDateTime2 } from "../../tools";
 
 class UpdateLektion extends Component {
   constructor() {
@@ -14,7 +14,7 @@ class UpdateLektion extends Component {
 
     this.state = {
       nichtgenugkredit: false,
-      nichtgenugkreditmessage: "Der Student hast nicht genug Kredit!",
+      nichtgenugkreditmessage: "Der Student hat nicht genug Guthaben!",
       //Zahlung daten
       zahlungsByStudentID: [],
       //Student daten
@@ -187,13 +187,13 @@ class UpdateLektion extends Component {
             <div className="row">
               <div className="col-md-8 m-auto">
                 <h3 className="display-4 text-center">
-                  der Schüler {this.state.studentSortierung} Lektion
-                  aktualisieren
+                  {this.state.studentSortierung} Lektion{" "}
+                  {formatDateTime2(this.state.lektionDatum)} aktualisieren
                 </h3>
                 <br />
                 <hr />
                 <form onSubmit={this.onSubmit}>
-                  <h6>Lektion Datum</h6>
+                  <h6>Lektionsdatum</h6>
                   <div className="form-group">
                     <input
                       type="datetime-local"
@@ -211,7 +211,7 @@ class UpdateLektion extends Component {
                       value={this.state.lektionMin}
                       onChange={this.onChange}
                     >
-                      <option value={0}>Select Lektion Dauer</option>
+                      <option value={0}>Lektionsdauer</option>
                       <option value={45}>45 min.</option>
                       <option value={60}>60 min.</option>
                       <option value={90}>90 min.</option>
@@ -227,7 +227,7 @@ class UpdateLektion extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.lektionPreis,
                       })}
-                      placeholder="Lektion Preis"
+                      placeholder="Lektionspreis"
                       name="lektionPreis"
                       value={this.state.lektionPreis || ""}
                       onChange={this.onChange}
@@ -251,7 +251,7 @@ class UpdateLektion extends Component {
                       value={this.state.lektionArt}
                       onChange={this.onChange}
                     >
-                      <option value={0}>Select Lektion Art</option>
+                      <option value={0}>Lektionsart</option>
                       <option value={1}>Skype</option>
                       <option value={2}>Real</option>
                     </select>
@@ -264,13 +264,14 @@ class UpdateLektion extends Component {
                       value={this.state.lektionStatus}
                       onChange={this.onChange}
                     >
-                      <option value={0}>Select Lektion Status</option>
+                      <option value={0}>Lektionstatus</option>
                       <option value={1}>gehalten</option>
                       <option value={2}>verpasst</option>
                     </select>
                   </div>
 
                   <input
+                    value="Speichern"
                     type="submit"
                     className="btn btn-primary btn-block mt-4"
                   />

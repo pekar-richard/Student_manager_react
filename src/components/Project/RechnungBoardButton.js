@@ -5,7 +5,7 @@ const RechnungBoardButton = () => {
   return (
     <React.Fragment>
       <Link to="/RechnungDashboard/" className="btn btn-lg btn-info">
-        Rechnung Board
+        Rechnungen
       </Link>
     </React.Fragment>
   );

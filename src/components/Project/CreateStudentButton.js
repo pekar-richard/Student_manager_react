@@ -5,7 +5,7 @@ const CreateStudentButton = () => {
   return (
     <React.Fragment>
       <Link to="/addStudent" className="btn btn-lg btn-info">
-        Create a Student
+        Student anlegen
       </Link>
     </React.Fragment>
   );

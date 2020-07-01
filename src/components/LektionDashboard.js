@@ -53,11 +53,13 @@ class LektionDashboard extends Component {
               </h1>
               <br />
               <br />
-              <div className="CreateLektionButton">
-                <CreateLektionButton studentIndex={this.state.studentIndex} />
-              </div>
-              <div className="ZahlungBoardButton">
-                <ZahlungBoardButton studentIndex={this.state.studentIndex} />
+              <div className="studentButtons">
+                <div className="CreateLektionButton">
+                  <CreateLektionButton studentIndex={this.state.studentIndex} />
+                </div>
+                <div className="ZahlungBoardButton">
+                  <ZahlungBoardButton studentIndex={this.state.studentIndex} />
+                </div>
               </div>
               <hr />
               {lektions.map(

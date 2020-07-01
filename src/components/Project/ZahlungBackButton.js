@@ -8,7 +8,7 @@ const ZahlungBackButton = ({ student_index }) => {
         to={`/LektionDashboard/${student_index}`}
         className="btn btn-lg btn-info"
       >
-        Back
+        Zurück
       </Link>
     </React.Fragment>
   );

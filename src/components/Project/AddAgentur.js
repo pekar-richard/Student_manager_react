@@ -51,9 +51,7 @@ class AddAgentur extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-8 m-auto">
-                <h5 className="display-4 text-center">
-                  Create Agentur Formular
-                </h5>
+                <h5 className="display-4 text-center">Agentur anlegen</h5>
                 <br />
                 <hr />
                 <form onSubmit={this.onSubmit}>
@@ -95,6 +93,7 @@ class AddAgentur extends Component {
                   </div>
 
                   <input
+                    value="Speichern"
                     type="submit"
                     className="btn btn-primary btn-block mt-4"
                   />

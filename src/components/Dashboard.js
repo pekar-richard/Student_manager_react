@@ -22,10 +22,10 @@ class Dashboard extends Component {
           <div className="row">
             <div className="col-md-12">
               <br />
-              <h1 className="display-4 text-center">Alle Studenten</h1>
+              <h5 className="display-4 text-center">Alle Studenten</h5>
               <br />
               <br />
-              <div>
+              <div className="studentButtons">
                 <div className="CreateStudentButton">
                   <CreateStudentButton />
                 </div>

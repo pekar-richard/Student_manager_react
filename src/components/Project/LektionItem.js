@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteLektion } from "../../actions/LektionActions";
-import { formatDateTime, formatDateTimeLocal } from "../../tools";
+import { formatDateTime, formatDateTime2 } from "../../tools";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../App.css";
 import { getAgenturs } from "../../actions/AgenturActions";
@@ -53,14 +53,14 @@ class LektionItem extends Component {
         >
           <div className="row">
             <div className="col-2">
-              <span className="mx-auto">{increment}</span>
+              <span className="mx-auto">{/*increment*/}</span>
             </div>
-            <div className="col-lg-6 col-md-4 col-8">
-              <h4>{formatDateTime(lektion.lektionDatum)}</h4>
+            <div className="col-lg-6 col-md-6 col-sm-4 ">
+              <h4>{formatDateTime2(lektion.lektionDatum)}</h4>
 
               <p>
                 Dauer: {lektion.lektionMin} min. <br /> Preis:{" "}
-                {lektion.lektionPreis} euro <br /> Agentur:{" "}
+                {lektion.lektionPreis} Euro <br /> Agentur:{" "}
                 {agenturs.map(
                   (agentur) =>
                     lektion.agenturIndex === agentur.agenturIndex &&
@@ -70,14 +70,14 @@ class LektionItem extends Component {
                 <br />
               </p>
             </div>
-            <div className="col-md-4 d-none d-lg-block">
-              <ul className="list-group">
+            <div className="col-lg-4 col-md-4 col-sm-6 d-lg-block">
+              <ul className="list-group pokus">
                 <Link
                   className="linkButton"
                   to={`/updateLektion/${lektion.lektionIndex}/${lektion.studentIndex}`}
                 >
                   <li className="list-group-item update">
-                    <i className="fa fa-edit pr-1"> Update</i>
+                    <i className="fa fa-edit pr-1">Ändern</i>
                   </li>
                 </Link>
                 <Example
@@ -85,11 +85,11 @@ class LektionItem extends Component {
                     this,
                     lektion.lektionIndex
                   )}
-                  modalheading={`Delete Lektion: ${formatDateTime(
+                  modalheading={`Löschen Lektion: ${formatDateTime2(
                     lektion.lektionDatum
                   )}`}
                   message={
-                    "Bist du sicher? Dadurch werden die Lektion und alle damit verbundenen Daten gelöscht!"
+                    "Sind Sie sicher? Dadurch werden die Lektion und alle damit verbundenen Daten gelöscht!"
                   }
                 />
               </ul>

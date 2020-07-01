@@ -16,10 +16,10 @@ class Header extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-info  mb-4">
         <div className="container">
           <a className="navbar-brand" href="/dashboard">
-            Students Management Tool
+            Studentenverwaltung
           </a>
           <button
             className="navbar-toggler"
@@ -34,17 +34,17 @@ class Header extends Component {
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
                 <a className="nav-link" href="/dashboard">
-                  Dashboard
+                  Übersicht
                 </a>
               </li>
             </ul>
+            <button
+              className="btn btn-lg btn-warning"
+              onClick={this.getAusloggen.bind(this)}
+            >
+              Abmelden
+            </button>
           </div>
-          <button
-            className="btn btn-lg btn-warning"
-            onClick={this.getAusloggen.bind(this)}
-          >
-            ausloggen
-          </button>
         </div>
       </nav>
     );

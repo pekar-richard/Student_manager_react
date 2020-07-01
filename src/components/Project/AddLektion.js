@@ -13,7 +13,7 @@ class AddLektion extends Component {
 
     this.state = {
       nichtgenugkredit: false,
-      nichtgenugkreditmessage: "Der Student hast nicht genug Kredit!",
+      nichtgenugkreditmessage: "Der Student hat nicht genug Guthaben!",
       //Student daten
       studentKredit: "",
       studentPreis45: "",
@@ -159,12 +159,12 @@ class AddLektion extends Component {
             <div className="row">
               <div className="col-md-8 m-auto">
                 <h3 className="display-4 text-center">
-                  Create Lektion für den Student {student.studentSortierung}
+                  Lektion für {student.studentSortierung} anlegen
                 </h3>
                 <br />
                 <hr />
                 <form onSubmit={this.onSubmit}>
-                  <h6>Lektion Datum</h6>
+                  <h6>Lektionsdatum</h6>
                   <div className="form-group">
                     <input
                       type="datetime-local"
@@ -182,7 +182,7 @@ class AddLektion extends Component {
                       value={this.state.lektionMin}
                       onChange={this.onChange}
                     >
-                      <option value={0}>Select Lektion Dauer</option>
+                      <option value={0}>Lektionsdauer</option>
                       <option value={45}>45 min.</option>
                       <option value={60}>60 min.</option>
                       <option value={90}>90 min.</option>
@@ -198,7 +198,7 @@ class AddLektion extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.lektionPreis,
                       })}
-                      placeholder="Lektion Preis"
+                      placeholder="Lektionspreis"
                       name="lektionPreis"
                       value={this.state.lektionPreis}
                       onChange={this.onChange}
@@ -222,7 +222,7 @@ class AddLektion extends Component {
                       value={this.state.lektionArt}
                       onChange={this.onChange}
                     >
-                      <option value={0}>Select Lektion Art</option>
+                      <option value={0}>Lektionsart</option>
                       <option value={1}>Skype</option>
                       <option value={2}>Real</option>
                     </select>
@@ -235,13 +235,14 @@ class AddLektion extends Component {
                       value={this.state.lektionStatus}
                       onChange={this.onChange}
                     >
-                      <option value={0}>Select Lektion Status</option>
+                      <option value={0}>Lektionstatus</option>
                       <option value={1}>gehalten</option>
                       <option value={2}>verpasst</option>
                     </select>
                   </div>
 
                   <input
+                    value="Speichern"
                     type="submit"
                     className="btn btn-primary btn-block mt-4"
                   />

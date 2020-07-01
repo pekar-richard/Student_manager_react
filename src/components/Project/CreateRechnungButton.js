@@ -5,7 +5,7 @@ const CreateRechnungButton = ({ student_index }) => {
   return (
     <React.Fragment>
       <Link to="/addRechnung/" className="btn btn-lg btn-info">
-        Create a Rechnung
+        Neue Rechnung
       </Link>
     </React.Fragment>
   );

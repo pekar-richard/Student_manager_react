@@ -76,7 +76,7 @@ class UpdateAgentur extends Component {
             <div className="row">
               <div className="col-md-8 m-auto">
                 <h5 className="display-4 text-center">
-                  die Agentur {this.props.agentur.agenturKurzname} aktualisieren
+                  Agentur {this.props.agentur.agenturKurzname} aktualisieren
                 </h5>
                 <br />
                 <hr />
@@ -119,6 +119,7 @@ class UpdateAgentur extends Component {
                   </div>
 
                   <input
+                    value="Speichern"
                     type="submit"
                     className="btn btn-primary btn-block mt-4"
                   />

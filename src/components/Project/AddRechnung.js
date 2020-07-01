@@ -13,7 +13,7 @@ class AddRechnung extends Component {
     this.state = {
       studentundagenturnull: false,
       studentundagentursindnullmessage:
-        "Sie müssen mindestens ein Student oder eine Agentur wählen!",
+        "Sie müssen mindestens einen Student oder eine Agentur wählen!",
       rechnTyp: "",
       rechnName: "",
       rechnZusatz: "",
@@ -101,9 +101,7 @@ class AddRechnung extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-8 m-auto">
-                <h5 className="display-4 text-center">
-                  Create Rechnung Formular
-                </h5>
+                <h5 className="display-4 text-center">Rechnung anlegen</h5>
                 <br />
                 <hr />
                 <form onSubmit={this.onSubmit}>
@@ -114,7 +112,7 @@ class AddRechnung extends Component {
                       value={this.state.rechnTyp}
                       onChange={this.onChange}
                     >
-                      <option value={0}>Select Rechnung Typ</option>
+                      <option value={0}>Rechnungstyp</option>
                       <option value={1}>Student</option>
                       <option value={2}>Agentur</option>
                     </select>
@@ -147,7 +145,7 @@ class AddRechnung extends Component {
                       value={this.state.agenturIndex}
                       onChange={this.onChange}
                     >
-                      <option value="">Select Agentur</option>
+                      <option value="">Agentur</option>
                       {agenturs.map((agentur) => (
                         <option
                           key={agentur.agenturIndex}
@@ -166,7 +164,7 @@ class AddRechnung extends Component {
                       value={this.state.studentIndex}
                       onChange={this.onChange}
                     >
-                      <option value="">Select Student</option>
+                      <option value="">Student</option>
 
                       {students.map((student) => (
                         <option
@@ -185,7 +183,7 @@ class AddRechnung extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.rechnZusatz,
                       })}
-                      placeholder="Zusatz Zeile"
+                      placeholder="Zusatzzeile"
                       name="rechnZusatz"
                       value={this.state.rechnZusatz}
                       onChange={this.onChange}
@@ -269,7 +267,7 @@ class AddRechnung extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.rechnIco,
                       })}
-                      placeholder="ICO"
+                      placeholder="IČO"
                       name="rechnIco"
                       value={this.state.rechnIco}
                       onChange={this.onChange}
@@ -287,7 +285,7 @@ class AddRechnung extends Component {
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.rechnDic,
                       })}
-                      placeholder="DIC"
+                      placeholder="DIČ"
                       name="rechnDic"
                       value={this.state.rechnDic}
                       onChange={this.onChange}
@@ -298,6 +296,7 @@ class AddRechnung extends Component {
                   </div>
 
                   <input
+                    value="Speichern"
                     type="submit"
                     className="btn btn-primary btn-block mt-4"
                   />

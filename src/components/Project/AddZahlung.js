@@ -55,13 +55,11 @@ class AddZahlung extends Component {
       agenturIndex: this.state.agenturIndex,
     };
 
-    if (this.zahlungRechnungCheck(this.state.zahlungRgnr) != false) {
-      this.props.createZahlung(
-        newZahlung,
-        this.state.studentIndex,
-        this.props.history
-      );
-    }
+    this.props.createZahlung(
+      newZahlung,
+      this.state.studentIndex,
+      this.props.history
+    );
   }
 
   //life cycle hooks
@@ -97,31 +95,6 @@ class AddZahlung extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  zahlungRechnungCheck = (rechnungNummer) => {
-    console.log(rechnungNummer);
-    if (
-      this.state.zahlungAbrechnung === 3 ||
-      this.state.zahlungAbrechnung === "3"
-    ) {
-      if (
-        rechnungNummer === "" ||
-        rechnungNummer === " " ||
-        rechnungNummer === 0 ||
-        rechnungNummer === "0"
-      ) {
-        if (this.state.rechnungnichtfillout === false) {
-          this.setState({
-            rechnungnichtfillout: true,
-          });
-        }
-        return false;
-      } else {
-        return true;
-      }
-    }
-    return true;
-  };
-
   render() {
     const { errors } = this.state;
     const { student } = this.props.student;
@@ -132,12 +105,12 @@ class AddZahlung extends Component {
             <div className="row">
               <div className="col-md-8 m-auto">
                 <h3 className="display-4 text-center">
-                  Create Zahlung für den Student {student.studentSortierung}
+                  Zahlung für {student.studentSortierung} anlegen
                 </h3>
                 <br />
                 <hr />
                 <form onSubmit={this.onSubmit}>
-                  <h6>Zahlung Datum</h6>
+                  <h6>Zahlungsdatum</h6>
                   <div className="form-group">
                     <input
                       type="date"
@@ -192,7 +165,7 @@ class AddZahlung extends Component {
                       value={this.state.zahlungSteuer}
                       onChange={this.onChange}
                     >
-                      <option value={0}>Zahlung Steuer</option>
+                      <option value={0}>steuerrelevant</option>
                       <option value={1}>nein</option>
                       <option value={2}>ja</option>
                     </select>
@@ -202,11 +175,11 @@ class AddZahlung extends Component {
                     <input
                       type="number"
                       min="0"
-                      step="0.1"
+                      step="1"
                       className={classnames("form-control form-control-lg ", {
                         "is-invalid": errors.zahlungRgnr,
                       })}
-                      placeholder="RGNR"
+                      placeholder="Rechnungs-Nr."
                       name="zahlungRgnr"
                       value={this.state.zahlungRgnr}
                       onChange={this.onChange}
@@ -249,7 +222,7 @@ class AddZahlung extends Component {
                       value={this.state.zahlungAbrechnung}
                       onChange={this.onChange}
                     >
-                      <option value={0}>Select Abrechnung</option>
+                      <option value={0}>Abrechnung</option>
                       <option value={1}>Bar</option>
                       <option value={2}>Kredit</option>
                       <option value={3}>Rechnung</option>
@@ -257,6 +230,7 @@ class AddZahlung extends Component {
                   </div>
 
                   <input
+                    value="Speichern"
                     type="submit"
                     className="btn btn-primary btn-block mt-4"
                   />

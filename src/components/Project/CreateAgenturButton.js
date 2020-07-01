@@ -5,7 +5,7 @@ const CreateAgenturButton = () => {
   return (
     <React.Fragment>
       <Link to="/addAgentur" className="btn btn-lg btn-info">
-        Create a Agentur
+        Neue Agentur
       </Link>
     </React.Fragment>
   );

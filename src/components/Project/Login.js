@@ -38,7 +38,7 @@ class Login extends Component {
           method="POST"
         >
           <h1 className="h3 mb-3 font-weight-normal">
-            Für registrierte Benutzer: Anmeldung
+            Anmeldung für registrierte Benutzer
           </h1>
           <label htmlFor="inputEmail" className="sr-only">
             Benutzername
@@ -65,7 +65,11 @@ class Login extends Component {
             onChange={this.onChange}
           />
 
-          <input type="submit" className="btn btn-primary btn-block mt-4" />
+          <input
+            value="Anmelden"
+            type="submit"
+            className="btn btn-primary btn-block mt-4"
+          />
         </form>
       </div>
     );

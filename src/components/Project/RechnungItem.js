@@ -10,27 +10,45 @@ class RechnungItem extends Component {
   onDeleteClick = (id) => {
     this.props.deleteRechnung(id);
   };
+
+  rechnungtypValue(rechnungtypvalue) {
+    if (rechnungtypvalue === 1 || rechnungtypvalue === "1") {
+      return "Student";
+    } else if (rechnungtypvalue === 2 || rechnungtypvalue === "2") {
+      return "Agentur";
+    } else {
+      return "keine Daten ";
+    }
+  }
+
   render() {
     const { increment } = this.props;
     const { rechnung } = this.props;
     return (
       <div className="container">
-        <div className="card card-body mb-3">
+        <div className="card card-body mb-3 student-aktiv">
           <div className="row">
             <div className="col-2">
-              <span className="mx-auto">{increment}</span>
+              <span className="mx-auto">{/*increment*/}</span>
             </div>
-            <div className="col-lg-6 col-md-4 col-8">
+            <div className="col-lg-6 col-md-6 col-sm-4 ">
               <h5>{rechnung.rechnName}</h5>
+              <p>
+                IČO: {rechnung.rechnIco}
+                <br />
+                DIČ: {rechnung.rechnDic}
+                <br />
+                Typ: {this.rechnungtypValue(rechnung.rechnTyp)}
+              </p>
             </div>
-            <div className="col-md-4 d-none d-lg-block">
-              <ul className="list-group">
+            <div className="col-lg-4 col-md-4 col-sm-6 d-lg-block">
+              <ul className="list-group pokus">
                 <Link
                   className="linkButton"
                   to={`/updateRechnung/${rechnung.rechnIndex}`}
                 >
                   <li className="list-group-item update">
-                    <i className="fa fa-edit pr-1"> Update</i>
+                    <i className="fa fa-edit pr-1"> Ändern</i>
                   </li>
                 </Link>
 

@@ -109,7 +109,7 @@ class ZahlungDashboard extends Component {
                 value={this.state.agenturIndex}
                 onChange={this.onChange}
               >
-                <option value="0">Select Agentur</option>
+                <option value="0">Agentur</option>
                 {agenturs.map((agentur) => (
                   <option
                     key={agentur.agenturIndex}

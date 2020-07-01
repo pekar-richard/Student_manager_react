@@ -33,6 +33,18 @@ class StudentItem extends Component {
     this.props.deleteStudent(id);
   };
 
+  abrechnungValue(abrechnungnummer) {
+    if (abrechnungnummer === 1 || abrechnungnummer === "1") {
+      return "Bar";
+    } else if (abrechnungnummer === 2 || abrechnungnummer === "2") {
+      return "Kredit";
+    } else if (abrechnungnummer === 3 || abrechnungnummer === "3") {
+      return "Rehnung";
+    } else {
+      return "keine Daten ";
+    }
+  }
+
   render() {
     const { student } = this.props;
     const { increment } = this.props;
@@ -48,29 +60,32 @@ class StudentItem extends Component {
         >
           <div className="row">
             <div className="col-2">
-              <span className="mx-auto">{increment}</span>
+              <span className="mx-auto">{/*increment*/}</span>
             </div>
-            <div className="col-lg-6 col-md-4 col-8">
-              <h3>{student.studentNachname}</h3>
-              <p>{student.studentVorname}</p>
-              <p>Kredit: {student.studentKredit} euro</p>
+            <div className="col-lg-6 col-md-6 col-sm-4 ">
+              <h4>
+                {" "}
+                {student.studentNachname} {student.studentVorname}
+              </h4>
               <p>
-                Agentur:{" "}
+                Kontostand: {student.studentKredit} euro <br /> Agentur:{" "}
                 {this.state.agenturs.map(
                   (agentur) =>
                     student.agenturIndex === agentur.agenturIndex &&
                     agentur.agenturKurzname
                 )}
+                <br />
+                Abrechnung: {this.abrechnungValue(student.studentAbrechnung)}
               </p>
             </div>
-            <div className="col-md-4 d-none d-lg-block">
-              <ul className="list-group">
+            <div className="col-lg-4 col-md-4 col-sm-6 d-lg-block">
+              <ul className="list-group pokus">
                 <Link
-                  className="linkButton"
+                  className="linkButton "
                   to={`/LektionDashboard/${student.studentIndex}`}
                 >
                   <li className="list-group-item board">
-                    <i className="fa fa-flag-checkered pr-1"> Lektion Board </i>
+                    <i className="fa fa-flag-checkered pr-1"> Lektionen </i>
                   </li>
                 </Link>
                 <Link
@@ -78,7 +93,7 @@ class StudentItem extends Component {
                   to={`/updateStudent/${student.studentIndex}`}
                 >
                   <li className="list-group-item update">
-                    <i className="fa fa-edit pr-1"> Update</i>
+                    <i className="fa fa-edit pr-1">Ändern</i>
                   </li>
                 </Link>
                 <Example
@@ -86,9 +101,9 @@ class StudentItem extends Component {
                     this,
                     student.studentIndex
                   )}
-                  modalheading={`Delete Student: ${student.studentSortierung}`}
+                  modalheading={`Löschen Student: ${student.studentSortierung}`}
                   message={
-                    "Bist du sicher? Dadurch werden der Student und alle damit verbundenen Daten gelöscht!"
+                    "Sind Sie sicher? Dadurch werden der Student und alle damit verbundenen Daten gelöscht!"
                   }
                 />
               </ul>

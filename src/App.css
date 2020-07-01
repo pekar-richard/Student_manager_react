@@ -1,3 +1,6 @@
+body {
+}
+
 img {
   width: 100%;
 }
@@ -11,7 +14,7 @@ img {
 
 .list-group-item.delete:hover {
   cursor: -webkit-grab;
-  background-color: pink;
+  background-color: #acffe3;
 }
 
 .list-group-item.update:hover {
@@ -21,7 +24,7 @@ img {
 
 .list-group-item.board:hover {
   cursor: -webkit-grab;
-  background-color: #d4c6f1;
+  background-color: #acffe3;
 }
 
 .fa.fa-minus-circle {
@@ -66,10 +69,16 @@ img {
 
 .lektion-in-past {
   background-color: #e0ffff !important;
+  -webkit-box-shadow: 11px 15px 26px -9px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 11px 15px 26px -9px rgba(0, 0, 0, 0.75);
+  box-shadow: 11px 15px 26px -9px rgba(0, 0, 0, 0.75);
 }
 
 .lektion-in-future {
   background-color: #ffe6e6 !important;
+  -webkit-box-shadow: 11px 15px 26px -9px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 11px 15px 26px -9px rgba(0, 0, 0, 0.75);
+  box-shadow: 11px 15px 26px -9px rgba(0, 0, 0, 0.75);
 }
 
 .linkButton {
@@ -78,10 +87,16 @@ img {
 
 .student-aktiv {
   background-color: #e0ffff !important;
+  -webkit-box-shadow: 11px 15px 26px -9px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 11px 15px 26px -9px rgba(0, 0, 0, 0.75);
+  box-shadow: 11px 15px 26px -9px rgba(0, 0, 0, 0.75);
 }
 
 .student-nichtaktiv {
   background-color: #ffe6e6 !important;
+  -webkit-box-shadow: 11px 15px 26px -9px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 11px 15px 26px -9px rgba(0, 0, 0, 0.75);
+  box-shadow: 11px 15px 26px -9px rgba(0, 0, 0, 0.75);
 }
 
 .CreateAgenturButton {
@@ -92,30 +107,28 @@ img {
 }
 
 .CreateStudentButton {
+  float: left;
+  margin: 5px;
 }
 
 .AgenturBoardButton {
   float: right;
-  position: absolute;
-  top: 150px;
-  left: 750px;
+  margin: 5px;
 }
 
 .RechnungBoardButton {
   float: right;
-  position: absolute;
-  top: 150px;
-  left: 930px;
+  margin: 5px;
+}
+
+.CreateLektionButton {
+  float: left;
+  margin: 5px;
 }
 
 .ZahlungBoardButton {
   float: right;
-  position: absolute;
-  top: 147px;
-  left: 950px;
-}
-
-.CreateLektionButton {
+  margin: 5px;
 }
 
 .ZahlungBackButton {
@@ -124,6 +137,7 @@ img {
 }
 
 .CreateZahlungButton {
+  margin-left: 5px;
 }
 
 .CreateRechnungButton {
@@ -144,4 +158,34 @@ img {
 
 .form-control {
   margin-bottom: 5px;
+}
+
+.display-4 {
+  font-size: 2.5rem !important;
+}
+
+.studentButtons {
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.topnav div {
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+  .studentButtons div {
+    float: none;
+    width: 100%;
+  }
+}
+
+.pokus {
+  -webkit-box-shadow: 18px 21px 9px -9px rgba(7, 1, 18, 0.19);
+  -moz-box-shadow: 18px 21px 9px -9px rgba(7, 1, 18, 0.19);
+  box-shadow: 18px 21px 9px -9px rgba(7, 1, 18, 0.19);
 }
