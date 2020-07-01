@@ -141,3 +141,7 @@ img {
   position: absolute;
   text-align: center;
 }
+
+.form-control {
+  margin-bottom: 5px;
+}
