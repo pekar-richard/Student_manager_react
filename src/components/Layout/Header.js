@@ -38,6 +38,13 @@ class Header extends Component {
                 </a>
               </li>
             </ul>
+            <ul className="navbar-nav  diagramms">
+              <li className="nav-item">
+                <a className="nav-link" href="/">
+                  Diagramms
+                </a>
+              </li>
+            </ul>
             <button
               className="btn btn-lg btn-warning"
               onClick={this.getAusloggen.bind(this)}

@@ -13,6 +13,7 @@ import AddStudent from "./components/Project/AddStudent";
 import AddLektion from "./components/Project/AddLektion";
 import AddAgentur from "./components/Project/AddAgentur";
 import AddZahlung from "./components/Project/AddZahlung";
+import Chart from "./charts/Chart";
 import Login from "./components/Project/Login";
 import AddRechnung from "./components/Project/AddRechnung";
 import UpdateStudent from "./components/Project/UpdateStudent";
@@ -135,6 +136,12 @@ class App extends Component {
         ) : (
           <div className="App">
             <Header />
+
+            <Route
+              exact
+              path="/"
+              render={(props) => <Chart {...props} isAuthed={true} />}
+            />
 
             <Route
               exact
