@@ -1,11 +1,13 @@
 import axios from "axios";
 import { GET_ERRORS, GET_LEKTION, GET_LEKTIONS, DELETE_LEKTION } from "./types";
+import { API_ENDPOINT } from "../config";
 
 export const createLektion = (lektion, student_index, history) => async (
   dispatch
 ) => {
   try {
-    await axios.post("/api/lektion/", lektion);
+    axios.defaults.withCredentials = true;
+    await axios.post(`${API_ENDPOINT}/api/lektion/`, lektion);
     history.push(`/LektionDashboard/${student_index}`);
     dispatch({
       type: GET_ERRORS,
@@ -23,7 +25,8 @@ export const updateLektion = (lektion, id, student_index, history) => async (
   dispatch
 ) => {
   try {
-    const res = await axios.put(`/api/lektion/${id}`, lektion);
+    axios.defaults.withCredentials = true;
+    const res = await axios.put(`${API_ENDPOINT}/api/lektion/${id}`, lektion);
     history.push(`/LektionDashboard/${student_index}`);
     dispatch({
       type: GET_ERRORS,
@@ -38,7 +41,8 @@ export const updateLektion = (lektion, id, student_index, history) => async (
 };
 
 export const getLektions = () => async (dispatch) => {
-  const res = await axios.get("/api/lektion/alllektions");
+  axios.defaults.withCredentials = true;
+  const res = await axios.get(`${API_ENDPOINT}/api/lektion/alllektions`);
 
   dispatch({
     type: GET_LEKTIONS,
@@ -48,7 +52,8 @@ export const getLektions = () => async (dispatch) => {
 
 export const getLektion = (id, history) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/lektion/${id}`);
+    axios.defaults.withCredentials = true;
+    const res = await axios.get(`${API_ENDPOINT}/api/lektion/${id}`);
 
     dispatch({
       type: GET_LEKTION,
@@ -60,7 +65,8 @@ export const getLektion = (id, history) => async (dispatch) => {
 };
 
 export const deleteLektion = (id) => async (dispatch) => {
-  await axios.delete(`/api/lektion/${id}`);
+  axios.defaults.withCredentials = true;
+  await axios.delete(`${API_ENDPOINT}/api/lektion/${id}`);
   dispatch({
     type: DELETE_LEKTION,
     payload: id,
